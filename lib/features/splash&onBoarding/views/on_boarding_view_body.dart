@@ -33,14 +33,14 @@ class OnBoardingPage extends StatelessWidget {
     return Stack(
       children: [
         firstPage
-            ? GestureDetector(
-          onTap: () {
-            PrefesStorage().saveBool(kOnBoardingSeen, true);
-            Navigator.pushReplacementNamed(context, LoginView.routeName);
-          },
-              child: Positioned(
-                right: 20,
-                top: 40,
+            ? Positioned(
+              right: 20,
+              top: 40,
+              child: GestureDetector(
+                onTap: () {
+              seenOnBoardingOrNot(context);
+              Navigator.pushReplacementNamed(context, LoginView.routeName);
+                },
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
@@ -156,12 +156,17 @@ class OnBoardingPage extends StatelessWidget {
               bottom: 40,
               left: 16,
               right: 16,
-              child: CustomButton(text: "ابدأ الان", onTap: () {
-                PrefesStorage().saveBool(kOnBoardingSeen, true);
+              child: CustomButton(text: "ابدأ الان",
+                  onTap: () {
+                seenOnBoardingOrNot(context);
                 Navigator.pushReplacementNamed(context, LoginView.routeName);
-              }),
+                  }),
             ),
       ],
     );
+  }
+
+  void seenOnBoardingOrNot(BuildContext context) async{
+    await PrefesStorage().saveBool(kOnBoardingSeen, true);
   }
 }

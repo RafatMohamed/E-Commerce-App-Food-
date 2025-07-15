@@ -136,9 +136,9 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
 
   Future<dynamic> navigatorToOnBoarding() {
     return Future.delayed(
-        const Duration(seconds: 1), () {
+        const Duration(seconds: 1), ()async {
       if (!mounted) return;
-      bool seenOnBoarding= PrefesStorage().getBool(kOnBoardingSeen);
+      bool seenOnBoarding=  PrefesStorage().getBool(kOnBoardingSeen);
      seenOnBoarding ?Navigator.pushReplacementNamed(
          context,
          LoginView.routeName
