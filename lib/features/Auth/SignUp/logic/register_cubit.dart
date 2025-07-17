@@ -17,7 +17,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   final FocusNode phoneFocus =FocusNode();
 
   final GlobalKey<FormState> formKey=GlobalKey();
-  final AutovalidateMode autovalidateMode=AutovalidateMode.disabled;
+   AutovalidateMode autovalidateMode=AutovalidateMode.disabled;
 
   bool obscureText=false;
   bool isCheck = false;

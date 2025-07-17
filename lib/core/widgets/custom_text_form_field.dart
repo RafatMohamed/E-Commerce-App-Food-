@@ -29,12 +29,11 @@ class CustomTextFormField extends StatelessWidget {
       focusNode:focusNode ,
       autofocus: false,
       validator: (value) {
-        if(value==null&&value!.isEmpty){
+        if(value==null || value.isEmpty){
           return "هذا الحقل مطوب";
         }
         return null;
       },
-      autovalidateMode: AutovalidateMode.disabled,
       scrollPhysics: const BouncingScrollPhysics(),
       style: TextStyles.semiBold16.copyWith(color: AppColor.grayscale950),
       keyboardType: keyboardType,
@@ -55,6 +54,8 @@ class CustomTextFormField extends StatelessWidget {
         disabledBorder: buildOutlineInputBorder(),
         enabled: true,
         focusedBorder: buildOutlineInputBorder(),
+        errorBorder:buildOutlineInputBorder(),
+        focusedErrorBorder: buildOutlineInputBorder(),
       ),
     );
   }

@@ -15,7 +15,7 @@ void main() async{
   await Firebase.initializeApp();
   await PrefsStorage.init();
   setup();
-  Bloc.observer=CustomBlocObserve();
+  Bloc.observer=CustomBlocObserver();
   runApp(const MyApp());
 }
 

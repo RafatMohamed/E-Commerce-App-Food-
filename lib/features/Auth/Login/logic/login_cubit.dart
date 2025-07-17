@@ -12,7 +12,7 @@ class LoginCubit extends Cubit<LoginState> {
   final FocusNode passwordFocus =FocusNode();
 
   final GlobalKey<FormState> formKey=GlobalKey();
-  final AutovalidateMode autovalidateMode=AutovalidateMode.disabled;
+   AutovalidateMode autovalidateMode=AutovalidateMode.disabled;
 
   bool obscureText=false;
 
