@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app/core/models/user_model.dart';
 import '../data/login_repo.dart';
 import 'login_state.dart';
 
@@ -13,6 +12,7 @@ class LoginCubit extends Cubit<LoginState> {
   final FocusNode passwordFocus =FocusNode();
 
   final GlobalKey<FormState> formKey=GlobalKey();
+  final AutovalidateMode autovalidateMode=AutovalidateMode.disabled;
 
   bool obscureText=false;
 

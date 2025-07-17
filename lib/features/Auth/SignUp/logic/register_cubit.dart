@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app/core/models/user_model.dart';
 import 'package:food_app/features/Auth/SignUp/logic/register_state.dart';
 import '../data/repo.dart';
 
@@ -19,6 +17,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   final FocusNode phoneFocus =FocusNode();
 
   final GlobalKey<FormState> formKey=GlobalKey();
+  final AutovalidateMode autovalidateMode=AutovalidateMode.disabled;
 
   bool obscureText=false;
   bool isCheck = false;

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'App/my_app.dart';
 import 'core/service/StorageLocal/shared_prefs.dart';
+import 'core/service/get_it.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -11,6 +12,7 @@ void main() async{
   );
   await Firebase.initializeApp();
   await PrefsStorage.init();
+  setup();
   runApp(const MyApp());
 }
 

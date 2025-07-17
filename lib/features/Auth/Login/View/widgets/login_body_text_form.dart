@@ -16,58 +16,62 @@ class LoginBodyTextForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      spacing: 16,
-      children: [
-        CustomTextFormField(
-          focusNode: cubit.emailFocus,
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.emailAddress,
-          hintText: "البريد الإلكتروني",
-          obscureText: false,
-          controller: cubit.emailController,
-          onSaved: (email) {
-            FocusScope.of(context).requestFocus(cubit.emailFocus);
-            cubit.emailController.text = email!;
-          },
-        ),
-        BlocBuilder<LoginCubit, LoginState>(
-          builder: (context, state) {
-            return CustomTextFormField(
-              focusNode: cubit.passwordFocus,
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.visiblePassword,
-              hintText: "كلمة المرور",
-              obscureText: cubit.obscureText,
-              controller: cubit.passwordController,
-              onSaved: (password) {
-                FocusScope.of(context).requestFocus(cubit.passwordFocus);
-                cubit.passwordController.text = password!;
-              },
-              suffixIcon:IconButton(
-                onPressed: () {
-                  cubit.changePasswordVisibility();
-                },
-                icon:
-                cubit.obscureText
-                    ? const Icon(
-                  Icons.visibility_outlined,
-                )
-                    : const Icon(
-                  Icons.visibility_off_outlined,
-                ),
-              ),
-            );
-          },
-        ),
-        Text(
-          'نسيت كلمة المرور؟',
-          style: TextStyles.semiBold13.copyWith(
-            color: AppColor.green1600,
+    return Form(
+      key: cubit.formKey,
+      autovalidateMode: cubit.autovalidateMode,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        spacing: 16,
+        children: [
+          CustomTextFormField(
+            focusNode: cubit.emailFocus,
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.emailAddress,
+            hintText: "البريد الإلكتروني",
+            obscureText: false,
+            controller: cubit.emailController,
+            onSaved: (email) {
+              FocusScope.of(context).requestFocus(cubit.emailFocus);
+              cubit.emailController.text = email!;
+            },
           ),
-        ),
-      ],
+          BlocBuilder<LoginCubit, LoginState>(
+            builder: (context, state) {
+              return CustomTextFormField(
+                focusNode: cubit.passwordFocus,
+                textInputAction: TextInputAction.done,
+                keyboardType: TextInputType.visiblePassword,
+                hintText: "كلمة المرور",
+                obscureText: cubit.obscureText,
+                controller: cubit.passwordController,
+                onSaved: (password) {
+                  FocusScope.of(context).requestFocus(cubit.passwordFocus);
+                  cubit.passwordController.text = password!;
+                },
+                suffixIcon:IconButton(
+                  onPressed: () {
+                    cubit.changePasswordVisibility();
+                  },
+                  icon:
+                  cubit.obscureText
+                      ? const Icon(
+                    Icons.visibility_outlined,
+                  )
+                      : const Icon(
+                    Icons.visibility_off_outlined,
+                  ),
+                ),
+              );
+            },
+          ),
+          Text(
+            'نسيت كلمة المرور؟',
+            style: TextStyles.semiBold13.copyWith(
+              color: AppColor.green1600,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

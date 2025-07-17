@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/features/Auth/Login/View/login_view.dart';
 import 'package:food_app/features/Auth/SignUp/logic/register_cubit.dart';
 import 'package:food_app/features/Auth/SignUp/logic/register_state.dart';
-import '../../../../../core/models/user_model.dart';
 import '../../../../../core/widgets/custom_button.dart';
-import '../../../SignUp/View/sign_up_view.dart';
 import '../../../SignUp/View/tets/test.dart';
 import '../../../widgets/have_account_or_not.dart';
 
@@ -33,7 +31,10 @@ class RegisterBodyBlocButton extends StatelessWidget {
             return CustomButton(
               text: "إنشاء حساب جديد",
               onTap: () {
-                cubit.userRegister(phoneNumer: cubit.phoneController.text,name: cubit.nameController.text,email: cubit.emailController.text,password: cubit.passwordController.text);
+                if(cubit.formKey.currentState!.validate()){
+                  cubit.formKey.currentState!.save();
+                  cubit.userRegister(phoneNumer: cubit.phoneController.text,name: cubit.nameController.text,email: cubit.emailController.text,password: cubit.passwordController.text);
+                }
               },
             );
           },

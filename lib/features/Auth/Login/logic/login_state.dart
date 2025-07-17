@@ -1,5 +1,3 @@
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:food_app/core/models/user_model.dart';
 
 class LoginState {}

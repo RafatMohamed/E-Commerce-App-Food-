@@ -28,6 +28,13 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       focusNode:focusNode ,
       autofocus: false,
+      validator: (value) {
+        if(value==null&&value!.isEmpty){
+          return "هذا الحقل مطوب";
+        }
+        return null;
+      },
+      autovalidateMode: AutovalidateMode.disabled,
       scrollPhysics: const BouncingScrollPhysics(),
       style: TextStyles.semiBold16.copyWith(color: AppColor.grayscale950),
       keyboardType: keyboardType,
