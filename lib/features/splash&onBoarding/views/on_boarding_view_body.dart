@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_app/core/constant.dart';
-import 'package:food_app/core/service/StorageLocal/SharedPrefs.dart';
+import 'package:food_app/core/service/StorageLocal/shared_prefs.dart';
 import 'package:food_app/features/Auth/Login/View/login_view.dart';
 
 import '../../../core/utils/app_colors.dart';
@@ -167,6 +167,6 @@ class OnBoardingPage extends StatelessWidget {
   }
 
   void seenOnBoardingOrNot(BuildContext context) async{
-    await PrefesStorage().saveBool(kOnBoardingSeen, true);
+    await PrefsStorage().saveBool(kOnBoardingSeen, true);
   }
 }

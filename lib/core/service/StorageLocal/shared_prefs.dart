@@ -1,13 +1,11 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
-
-class PrefesStorage {
+class PrefsStorage {
   static SharedPreferences? _prefs;
 
-  PrefesStorage._internal();
-  static final PrefesStorage _instance = PrefesStorage._internal();
-  factory PrefesStorage() => _instance;
+  PrefsStorage._internal();
+  static final PrefsStorage _instance = PrefsStorage._internal();
+  factory PrefsStorage() => _instance;
   static Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
     // await _prefs?.clear();

@@ -1,0 +1,70 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/models/user_model.dart';
+import '../../../../../core/widgets/custom_button.dart';
+import '../../../SignUp/View/sign_up_view.dart';
+import '../../../SignUp/View/tets/test.dart';
+import '../../../widgets/have_account_or_not.dart';
+import '../../logic/login_cubit.dart';
+import '../../logic/login_state.dart';
+
+class LoginBoBlocButton extends StatelessWidget {
+  const LoginBoBlocButton({
+    super.key,
+    required this.cubit,
+  });
+
+  final LoginCubit cubit;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      spacing: 33,
+      children: [
+        BlocConsumer<LoginCubit, LoginState>(
+          builder: (context, state) {
+            if (state is LoginLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return CustomButton(
+              text: "تسجيل دخول",
+              onTap: () {
+                cubit.userLogin(email: cubit.emailController.text,password: cubit.passwordController.text);
+              },
+            );
+          },
+          listener: (context, state) {
+            if (state is LoginSuccess) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const TestLogin();
+                  },
+                ),
+              );
+            }
+            if (state is LoginFailure) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.error)),
+              );
+            }
+          },
+        ),
+        HaveAccountOrNot(
+          onPressed: () {
+            Navigator.pushNamed(
+              context,
+              SignUpView.routeName,
+            );
+          },
+          text: 'لا تمتلك حسابًا؟ ',
+          textButton: 'قم بإنشاء حساب',
+        ),
+      ],
+    );
+  }
+}

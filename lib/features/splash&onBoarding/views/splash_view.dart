@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_app/core/constant.dart';
-import 'package:food_app/core/service/StorageLocal/SharedPrefs.dart';
+import 'package:food_app/core/service/StorageLocal/shared_prefs.dart';
 import 'package:food_app/core/utils/images.dart';
 import 'package:food_app/features/Auth/Login/View/login_view.dart';
 import 'package:food_app/features/splash&onBoarding/views/onboarding_view.dart';
@@ -138,7 +138,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     return Future.delayed(
         const Duration(seconds: 1), ()async {
       if (!mounted) return;
-      bool seenOnBoarding=  PrefesStorage().getBool(kOnBoardingSeen);
+      bool seenOnBoarding=  PrefsStorage().getBool(kOnBoardingSeen);
      seenOnBoarding ?Navigator.pushReplacementNamed(
          context,
          LoginView.routeName
