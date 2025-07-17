@@ -4,6 +4,8 @@ import 'package:food_app/features/Auth/SignUp/View/widgets/register_view_body.da
 import 'package:food_app/features/Auth/SignUp/data/repo.dart';
 import 'package:food_app/features/Auth/SignUp/logic/register_cubit.dart';
 
+import '../../../../core/service/get_it.dart';
+
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
   static const String routeName = "SignUp";
@@ -17,7 +19,9 @@ class _SignUpViewState extends State<SignUpView> {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return BlocProvider(
-      create: (context) => RegisterCubit(registerRepo: RegisterRepo()),
+      create: (context) => RegisterCubit(
+        registerRepo: getIt<RegisterRepo>(),
+      ),
       child: Builder(
         builder: (context) {
           final cubit = RegisterCubit.get(context);
