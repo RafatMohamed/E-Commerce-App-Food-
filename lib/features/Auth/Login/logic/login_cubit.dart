@@ -27,6 +27,27 @@ class LoginCubit extends Cubit<LoginState> {
       (user) => emit(LoginSuccess(userModelAuth:user )),
     );
   }
+  Future<void> userLoginWithGoogle() async {
+    emit(LoginLoading());
+    var userLogin = await loginRepo.loginUserWithGoogleRepo();
+    userLogin.fold(
+      (error) => emit(LoginFailure(error: error)),
+      (user) => emit(LoginSuccess(userModelAuth:user)),
+    );
+  }
+  Future<void> userLoginWithGFacebook() async {
+    emit(LoginLoading());
+    var userLogin = await loginRepo.loginUserWithFacebookRepo();
+    userLogin.fold(
+      (error) => emit(LoginFailure(error: error)),
+      (user) => emit(LoginSuccess(userModelAuth:user)),
+    );
+  }
+  Future<void> logOutFromGoogle() async {
+    emit(LoginLoading());
+    var userLogin = await loginRepo.firebaseAuthService.signOutFromGoogle();
+   return userLogin;
+  }
   void changePasswordVisibility() {
     obscureText =!obscureText;
     emit(LoginChangePasswordVisibility(obsecure: obscureText));

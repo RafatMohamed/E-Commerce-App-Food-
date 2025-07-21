@@ -38,7 +38,7 @@ class RegisterBodyBlocButton extends StatelessWidget {
                     cubit.userRegister(phoneNumer: cubit.phoneController.text,name: cubit.nameController.text,email: cubit.emailController.text,password: cubit.passwordController.text);
                   }else{
                     ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("يجب الموافقه ع الاحكام والشروط")
+                        const SnackBar(content: Text("يجب الموافقه ع الاحكام والشروط")
                         )
                     );
                   }

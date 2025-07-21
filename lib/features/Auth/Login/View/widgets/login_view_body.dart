@@ -39,7 +39,7 @@ class LoginViewBody extends StatelessWidget {
                   const SizedBox(height: 66),
                   LoginBoBlocButton(cubit: cubit),
                   const SizedBox(height: 33),
-                  LoginBodySocial(size: size),
+                  LoginBodySocial(size: size,cubit: cubit,),
                 ],
               ),
             ),

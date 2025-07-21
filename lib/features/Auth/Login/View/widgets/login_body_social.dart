@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/images.dart';
 import '../../../widgets/default_login_media.dart';
+import '../../logic/login_cubit.dart';
 
 class LoginBodySocial extends StatelessWidget {
   const LoginBodySocial({
     super.key,
-    required this.size,
+    required this.size, required this.cubit,
   });
 
   final Size size;
+  final LoginCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,9 @@ class LoginBodySocial extends StatelessWidget {
         DefaultLoginMedia(
           text: 'تسجيل بواسطة جوجل',
           logoIcon: Assets.imagesGoogleIcon,
-          onPressed: () {},
+          onPressed: () {
+            cubit.userLoginWithGoogle();
+          },
         ),
         DefaultLoginMedia(
           text: 'تسجيل بواسطة أبل',
@@ -54,8 +58,9 @@ class LoginBodySocial extends StatelessWidget {
         DefaultLoginMedia(
           text: 'تسجيل بواسطة فيسبوك',
           logoIcon: Assets.imagesFacebookIcon,
-
-          onPressed: () {},
+          onPressed: () {
+            cubit.userLoginWithGFacebook();
+          },
         ),
       ],
     );

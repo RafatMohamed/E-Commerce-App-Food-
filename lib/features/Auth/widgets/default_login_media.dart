@@ -13,38 +13,42 @@ class DefaultLoginMedia extends StatelessWidget {
   final Function() onPressed;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(kDefaultPadding),
-      width: double.infinity,
-      height: 56,
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            width: 1,
-            color: Color(0xFFDCDEDE),
+    return GestureDetector(
+      onTap: onPressed,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.all(kDefaultPadding),
+        width: double.infinity,
+        height: 56,
+        decoration: ShapeDecoration(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            side: const BorderSide(
+              width: 1,
+              color: Color(0xFFDCDEDE),
+            ),
+            borderRadius: BorderRadius.circular(16),
           ),
-          borderRadius: BorderRadius.circular(16),
         ),
-      ),
-      child: Stack(
-        textDirection: TextDirection.rtl,
-        children: [
-          Align(
-            alignment: AlignmentDirectional.center,
-            child: Text(
-              text ,
-              textAlign: TextAlign.center,
-              style: TextStyles.semiBold16.copyWith(
-                color: AppColor.grayscale950,
+        child: Stack(
+          textDirection: TextDirection.rtl,
+          children: [
+            Align(
+              alignment: AlignmentDirectional.center,
+              child: Text(
+                text ,
+                textAlign: TextAlign.center,
+                style: TextStyles.semiBold16.copyWith(
+                  color: AppColor.grayscale950,
+                ),
               ),
             ),
-          ),
-          Align(
-            alignment: AlignmentDirectional.centerEnd,
-            child: SvgPicture.asset(logoIcon,width: 20,height: 20,),
-          ),
-        ],
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: SvgPicture.asset(logoIcon,width: 20,height: 20,),
+            ),
+          ],
+        ),
       ),
     );
   }

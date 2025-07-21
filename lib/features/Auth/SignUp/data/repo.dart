@@ -1,29 +1,34 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:food_app/core/models/user_model.dart';
+import 'package:food_app/core/service/Firebase_service/firebase_auth.dart';
 import '../../../../core/constant.dart';
 import '../../../../core/error/handel_error.dart';
+import '../../../../core/service/Firebase_service/fire_store.dart';
 
 
 class RegisterRepo{
+  RegisterRepo({required this.fireStore, required this.firebaseAuthService});
+
+  final FirebaseAuthService firebaseAuthService;
+  final FireStoreService fireStore;
+
   final FirebaseAuth auth=FirebaseAuth.instance;
-  final FirebaseFirestore fireStore=FirebaseFirestore.instance;
+
+
   Future<Either<String, UserModel>> registerUser({required String email, required String password, required String name, required String phoneNumer}) async {
     try {
-    final credential =  await auth.createUserWithEmailAndPassword(
-        email: email,
-        password:password,
-      );
-    await credential.user!.updateDisplayName(name);
-
-    await fireStore.collection(kCollectionUserModel).doc(auth.currentUser!.uid).set({
+    final user = await firebaseAuthService.signUp(emailAddress: email, password: password);
+    await user.updateDisplayName(name);
+    final Map<String,dynamic> userData={
       'name': name,
       'email': email,
       'phoneNumber': phoneNumer,
       'uid': auth.currentUser!.uid,
-    });
-      return right(UserModelInfo.fromFirebaseUser(credential.user!));
+    };
+    await fireStore.setUserData(path: auth.currentUser!.uid, data: userData, collectionName: kCollectionUserModel);
+
+      return right(UserModelInfo.fromFirebaseUser(user));
     } on FirebaseAuthException catch (e) {
       return Left(getErrorMessage(e));
     } catch (e) {
