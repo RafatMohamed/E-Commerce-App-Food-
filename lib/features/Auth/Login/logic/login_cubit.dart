@@ -10,6 +10,9 @@ class LoginCubit extends Cubit<LoginState> {
 
   final FocusNode emailFocus =FocusNode();
   final FocusNode passwordFocus =FocusNode();
+  final TextEditingController phoneController =TextEditingController();
+  final FocusNode phoneFocus =FocusNode();
+
 
   final GlobalKey<FormState> formKey=GlobalKey();
    AutovalidateMode autovalidateMode=AutovalidateMode.disabled;
@@ -19,6 +22,15 @@ class LoginCubit extends Cubit<LoginState> {
   static LoginCubit get(context) => BlocProvider.of(context);
 
   LoginRepo loginRepo;
+  Future<void> savePhoneNumber({required String phoneNumber}) async {
+    emit(LoginLoading());
+    var userLogin = await loginRepo.savePhoneNumber(phoneNumber: phoneNumber);
+    userLogin.fold(
+          (error) => emit(LoginFailure(error: error)),
+          (user) => emit(LoginSuccess(userModelAuth:user)),
+    );
+  }
+
   Future<void> userLogin({required String email,required String password}) async {
     emit(LoginLoading());
     var userLogin = await loginRepo.loginUser(email:email, password: password);
@@ -27,9 +39,9 @@ class LoginCubit extends Cubit<LoginState> {
       (user) => emit(LoginSuccess(userModelAuth:user )),
     );
   }
-  Future<void> userLoginWithGoogle() async {
+  Future<void> userLoginWithGoogle({required BuildContext context}) async {
     emit(LoginLoading());
-    var userLogin = await loginRepo.loginUserWithGoogleRepo();
+    var userLogin = await loginRepo.loginUserWithGoogleRepo(context: context);
     userLogin.fold(
       (error) => emit(LoginFailure(error: error)),
       (user) => emit(LoginSuccess(userModelAuth:user)),

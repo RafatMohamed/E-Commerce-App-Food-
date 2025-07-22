@@ -8,12 +8,16 @@ class FireStoreService{
   {
   await fireStore.collection(collectionName).doc(path).set(data,SetOptions(merge: true));
   }
+
   Future<Map<String,dynamic>?> getUserData({required String collectionName,required String path})async
   {
- final userData= await fireStore.collection(collectionName).doc(path).get();
- return userData.data()!;
-  }
+    final snapshot = await fireStore.collection(collectionName).doc(path).get();
+    if (!snapshot.exists || snapshot.data() == null) {
+      return null;
+    }
 
+    return snapshot.data();
+  }
   Future<UserModel> getUserDataFromFireStore(String uid) async {
     final data = await getUserData(collectionName: kCollectionUserModel, path: uid);
     if (data == null) {
@@ -23,7 +27,7 @@ class FireStoreService{
       name: data['name'],
       email: data['email'],
       id: uid,
-      phoneNumer: data['phoneNumber'],
+      phoneNumber: data['phoneNumber'],
     );
   }
 

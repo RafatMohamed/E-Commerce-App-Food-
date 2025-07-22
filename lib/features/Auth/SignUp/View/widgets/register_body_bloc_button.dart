@@ -35,7 +35,7 @@ class RegisterBodyBlocButton extends StatelessWidget {
                 if(cubit.formKey.currentState!.validate()){
                   cubit.formKey.currentState!.save();
                   if(cubit.isCheck){
-                    cubit.userRegister(phoneNumer: cubit.phoneController.text,name: cubit.nameController.text,email: cubit.emailController.text,password: cubit.passwordController.text);
+                    cubit.userRegister(phoneNumber: cubit.phoneController.text,name: cubit.nameController.text,email: cubit.emailController.text,password: cubit.passwordController.text);
                   }else{
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text("يجب الموافقه ع الاحكام والشروط")

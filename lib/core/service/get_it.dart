@@ -15,6 +15,7 @@ void setup() {
   getIt.registerSingleton<FireStoreService>(FireStoreService());
 
   getIt.registerSingleton<LoginRepo>(LoginRepo(
+    fireStoreService: getIt.get<FireStoreService>(),
     firebaseAuthService: getIt.get<FirebaseAuthService>(),
   ));
 

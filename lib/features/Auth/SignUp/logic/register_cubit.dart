@@ -11,10 +11,10 @@ class RegisterCubit extends Cubit<RegisterState> {
   final TextEditingController nameController =TextEditingController();
   final TextEditingController phoneController =TextEditingController();
 
+  final FocusNode phoneFocus =FocusNode();
   final FocusNode nameFocus=FocusNode();
   final FocusNode emailFocus =FocusNode();
   final FocusNode passwordFocus =FocusNode();
-  final FocusNode phoneFocus =FocusNode();
 
   final GlobalKey<FormState> formKey=GlobalKey();
    AutovalidateMode autovalidateMode=AutovalidateMode.disabled;
@@ -28,13 +28,13 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   RegisterRepo registerRepo;
 
-  Future<void> userRegister({required String email, required String password, required String name, required String phoneNumer}) async {
+  Future<void> userRegister({required String email, required String password, required String name, required String phoneNumber}) async {
     emit(RegisterLoading());
     var userRegister = await registerRepo.registerUser(
       email: email,
       password: password,
       name: name,
-      phoneNumer: phoneNumer,
+      phoneNumber: phoneNumber,
     );
     userRegister.fold(
       (error) => emit(RegisterFailure(error: error)),

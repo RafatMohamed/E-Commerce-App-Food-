@@ -16,18 +16,17 @@ class RegisterRepo{
   final FirebaseAuth auth=FirebaseAuth.instance;
 
 
-  Future<Either<String, UserModel>> registerUser({required String email, required String password, required String name, required String phoneNumer}) async {
+  Future<Either<String, UserModel>> registerUser({required String email, required String password, required String name, required String phoneNumber}) async {
     try {
     final user = await firebaseAuthService.signUp(emailAddress: email, password: password);
     await user.updateDisplayName(name);
     final Map<String,dynamic> userData={
       'name': name,
       'email': email,
-      'phoneNumber': phoneNumer,
-      'uid': auth.currentUser!.uid,
+      'phoneNumber': phoneNumber,
+      'uid': user.uid,
     };
-    await fireStore.setUserData(path: auth.currentUser!.uid, data: userData, collectionName: kCollectionUserModel);
-
+      await fireStore.setUserData(path: user.uid, data: userData, collectionName: kCollectionUserModel);
       return right(UserModelInfo.fromFirebaseUser(user));
     } on FirebaseAuthException catch (e) {
       return Left(getErrorMessage(e));

@@ -7,6 +7,20 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  Future deletUser()async{
+    return await _auth.currentUser!.delete();
+  }
+  Future<void> signOut() async {
+    await _auth.signOut();
+  }
+  Future<bool> isExistUser(bool isCheckExist) async {
+    if (isCheckExist) {
+      return _auth.currentUser != null;
+
+    } else {
+      return _auth.currentUser == null;
+    }
+  }
   Future<User> signUp({
     required String emailAddress,
     required String password,
@@ -28,9 +42,10 @@ class FirebaseAuthService {
     return credential.user!;
   }
 
-  Future<User> signInWithGoogle() async {
+  Future<User?> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    if (googleUser == null) return null;
 
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
