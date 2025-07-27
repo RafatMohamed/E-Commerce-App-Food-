@@ -3,6 +3,7 @@ import '../../../../../core/constant.dart';
 import 'custom_app_bar_home.dart';
 import '../../../../core/widgets/custom_search_bar.dart';
 import 'default_offers.dart';
+import 'deffault_best_seller_widget.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -20,12 +21,11 @@ class HomeViewBody extends StatelessWidget {
             SizedBox(height: 12),
             DefaultOffers(),
             SizedBox(height: 12),
-
+            DefaultBestSellers (),
           ],
         ),
       ),
     );
   }
 }
-
 

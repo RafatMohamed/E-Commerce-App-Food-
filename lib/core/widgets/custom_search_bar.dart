@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 import '../utils/images.dart';
 
@@ -23,6 +24,14 @@ class CustomSearchBar extends StatelessWidget {
       ),
       child: TextFormField(
         cursorColor: Colors.black,
+        scrollPhysics: const BouncingScrollPhysics(),
+        style: TextStyles.semiBold16.copyWith(color: AppColor.grayscale950),
+        keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.done,
+        textDirection: TextDirection.ltr,
+        textAlign: TextAlign.start,
+        controller: TextEditingController(),
+        onSaved:(newValue) {} ,
         decoration: InputDecoration(
           prefixIcon: Padding(
             padding: const EdgeInsets.all(10.0),
@@ -36,9 +45,8 @@ class CustomSearchBar extends StatelessWidget {
           enabledBorder: buildOutlineInputBorder(),
           focusedBorder: buildOutlineInputBorder(),
           hintText: 'ابحث عن ما تريد',
-          alignLabelWithHint: true,
-          hintTextDirection:TextDirection.rtl ,
-          hintStyle: TextStyles.regular16.copyWith(color: const Color(0xff949D9E),),
+          hintTextDirection:TextDirection.rtl,
+          hintStyle: TextStyles.bold13.copyWith(color: AppColor.grayscale400),
       ),
       ),
     );

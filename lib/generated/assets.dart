@@ -14,11 +14,15 @@ class Assets {
   static const String imagesApplIcon = 'assets/images/appl_icon.svg';
   static const String imagesCheck = 'assets/images/Check.svg';
   static const String imagesEdit = 'assets/images/edit.svg';
+  static const String imagesEditeoffers = 'assets/images/editeoffers.png';
+  static const String imagesEditeoffers1 = 'assets/images/editeoffers1.png';
   static const String imagesFacebookIcon = 'assets/images/facebook_icon.svg';
   static const String imagesFeaturedItemBackground = 'assets/images/featured_item_background.svg';
   static const String imagesFilter = 'assets/images/filter.svg';
   static const String imagesFilter2 = 'assets/images/filter2.svg';
   static const String imagesGoogleIcon = 'assets/images/google_icon.svg';
+  static const String imagesImageOffers = 'assets/images/imageOffers.svg';
+  static const String imagesImageOffers2 = 'assets/images/imageOffers2.svg';
   static const String imagesLocation = 'assets/images/location.svg';
   static const String imagesLogo = 'assets/images/logo.svg';
   static const String imagesNotification = 'assets/images/notification.svg';
@@ -37,12 +41,5 @@ class Assets {
   static const String outlineProducts = 'assets/images/vuesax/outline/products.svg';
   static const String outlineShoppingCart = 'assets/images/vuesax/outline/shopping-cart.svg';
   static const String outlineUser = 'assets/images/vuesax/outline/user.svg';
-  static const String utilsImages = 'lib/core/utils/images.dart';
-  static const String imageOffers= "assets/images/editeoffers1.png";
-  static const String imageOffers2= "assets/images/editeoffers.png";
-  static const String banana="assets/images/Bitmap.png";
-  static const String mango= "assets/images/mango-transparent-background-free-png 2.png";
-  static const String avocado= "assets/images/Avocado-PNG-Clipart 1.png";
-  static const String pineapple= "assets/images/pineapple-fruit-transparent-background-free-png 1.png";
-  static const String strawberry= "assets/images/strawberry.png";
+
 }

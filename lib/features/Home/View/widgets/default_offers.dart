@@ -1,40 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:food_app/core/utils/app_text_styles.dart';
-
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/images.dart';
 
-class CustomButtonShopping extends StatelessWidget {
-  const CustomButtonShopping({
-    super.key,
-    required this.text,
-    required this.onTap,
-  });
-  final String text;
-  final VoidCallback onTap;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 120,
-        height: 32,
-        decoration: ShapeDecoration(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        ),
-        child: Center(
-          child: Text(
-            text,
-            style: TextStyles.bold13.copyWith(color: AppColor.green1500),
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 class DefaultOffers extends StatelessWidget {
   const DefaultOffers({super.key});
@@ -48,24 +17,29 @@ class DefaultOffers extends StatelessWidget {
     ];
 
     void callbackFunction(int index, CarouselPageChangedReason reason) {}
-    return CarouselSlider(
-        items: items,
-        options: CarouselOptions(
-          height: 170,
-          aspectRatio: 16/9,
-          viewportFraction: 0.8,
-          initialPage: 0,
-          enableInfiniteScroll: true,
-          reverse: false,
-          autoPlay: true,
-          autoPlayInterval: Duration(seconds: 3),
-          autoPlayAnimationDuration: Duration(milliseconds: 800),
-          autoPlayCurve: Curves.fastOutSlowIn,
-          enlargeCenterPage: true,
-          enlargeFactor: 0.3,
-          onPageChanged: callbackFunction,
-          scrollDirection: Axis.horizontal,
-        )
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: CarouselSlider(
+          items: items,
+          options: CarouselOptions(
+            height: 170,
+            aspectRatio: 16/9,
+            viewportFraction: 0.8,
+            initialPage: 0,
+            enableInfiniteScroll: false,
+            reverse: false,
+            autoPlay: true,
+            autoPlayInterval: const Duration(seconds: 3),
+            autoPlayAnimationDuration: const Duration(milliseconds: 800),
+            autoPlayCurve: Curves.fastOutSlowIn,
+            padEnds: false, // removes side padding
+            scrollPhysics: const BouncingScrollPhysics(),
+            enlargeCenterPage: true,
+            enlargeFactor: 0.3,
+            onPageChanged: callbackFunction,
+            scrollDirection: Axis.horizontal,
+          )
+      ),
     );
   }
 }
@@ -109,13 +83,13 @@ class DefaultItemCursor extends StatelessWidget {
                 color: color,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                 shadows: const [
-                BoxShadow(
-                  color: Color(0xFFF3F5E0),
-                  blurRadius: 9,
-                  offset: Offset(0, 9),
-                  spreadRadius: 20,
-                ),
-              ],
+                  BoxShadow(
+                    color: Color(0xFFF3F5E0),
+                    blurRadius: 9,
+                    offset: Offset(0, 9),
+                    spreadRadius: 20,
+                  ),
+                ],
               ),
               width: size.width * 0.5,
               height: 150,
@@ -173,4 +147,33 @@ class LeftOvalClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+
+class CustomButtonShopping extends StatelessWidget {
+  const CustomButtonShopping({
+    super.key,
+    required this.text,
+    required this.onTap,
+  });
+
+  final String text;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+        child: Text(
+          text,
+          style: TextStyles.bold13.copyWith(color: AppColor.green1500),
+        ),
+      ),
+    );
+  }
 }
