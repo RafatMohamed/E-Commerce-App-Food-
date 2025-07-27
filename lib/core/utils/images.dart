@@ -38,5 +38,7 @@ class Assets {
   static const String outlineShoppingCart = 'assets/images/vuesax/outline/shopping-cart.svg';
   static const String outlineUser = 'assets/images/vuesax/outline/user.svg';
   static const String utilsImages = 'lib/core/utils/images.dart';
+  static const String imageOffers= "assets/images/editeoffers1.png";
+  static const String imageOffers2= "assets/images/editeoffers.png";
 
 }
