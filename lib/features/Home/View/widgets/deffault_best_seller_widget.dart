@@ -56,6 +56,7 @@ class  DefaultBestSellers extends StatelessWidget {
             crossAxisCount: 2,
             crossAxisSpacing: 16,
             mainAxisSpacing: 8,
+            childAspectRatio: 0.8,
           ),
           itemBuilder: (context, index) => CustomCategoryProduct(
             image: products[index].image ,
@@ -65,7 +66,6 @@ class  DefaultBestSellers extends StatelessWidget {
             onTapFavorite:products[index].onTapFavorite,
           ),
         ),
-        const SizedBox(height: 8,),
       ],
     );
   }

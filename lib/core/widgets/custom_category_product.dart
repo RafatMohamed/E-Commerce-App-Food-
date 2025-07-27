@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/core/utils/app_text_styles.dart';
 
+import '../utils/images.dart';
+
 class CustomCategoryProduct extends StatelessWidget {
   const CustomCategoryProduct({
     super.key, this.onTapFavorite, this.onTapCartAdd, required this.image, required this.title, required this.price,
@@ -93,10 +95,16 @@ class CustomCategoryProduct extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 20,
+            top: 120,
+            left: 30,
+            right: 50,
+            child: Image.asset(Assets.oval,fit: BoxFit.fill,height: 50,color: Colors.grey.shade400.withValues(alpha: 0.5),),
+          ),
+          Positioned(
+            top: 50,
             left: 16,
             child: Image.asset(image,fit: BoxFit.scaleDown,width: 130,height: 100,),
-          )
+          ),
         ]
     );
   }

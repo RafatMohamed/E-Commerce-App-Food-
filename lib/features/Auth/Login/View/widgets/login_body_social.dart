@@ -42,7 +42,7 @@ class LoginBodySocial extends StatelessWidget {
               text: 'تسجيل بواسطة جوجل',
               logoIcon: Assets.imagesGoogleIcon,
               onPressed: () {
-              final userLoginWithGoogle =  cubit.userLoginWithGoogle(context: context);
+              // final userLoginWithGoogle =  cubit.userLoginWithGoogle(context: context);
               // if(userLoginWithGoogle != null){
               //   Navigator.push(
               //     context,

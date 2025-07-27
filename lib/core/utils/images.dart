@@ -45,4 +45,5 @@ class Assets {
   static const String avocado= "assets/images/Avocado-PNG-Clipart 1.png";
   static const String pineapple= "assets/images/pineapple-fruit-transparent-background-free-png 1.png";
   static const String strawberry= "assets/images/strawberry.png";
+  static const String oval= "assets/images/ovall.png";
 }
