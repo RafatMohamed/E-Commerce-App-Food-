@@ -4,7 +4,7 @@ import 'package:food_app/features/splash&onBoarding/views/splash_view.dart';
 
 import '../../features/Auth/Login/View/login_view.dart';
 import '../../features/Auth/SignUp/View/sign_up_view.dart';
-import '../../features/Home/View/login_view.dart';
+import '../../features/Home/View/home_view.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings setting){
   switch(setting.name){

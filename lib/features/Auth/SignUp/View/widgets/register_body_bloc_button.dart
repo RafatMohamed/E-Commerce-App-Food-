@@ -7,7 +7,7 @@ import 'package:food_app/features/Auth/SignUp/logic/register_state.dart';
 import '../../../../../core/constant.dart';
 import '../../../../../core/service/StorageLocal/shared_prefs.dart';
 import '../../../../../core/widgets/custom_button.dart';
-import '../../../../Home/View/login_view.dart';
+import '../../../../Home/View/home_view.dart';
 import '../../../widgets/have_account_or_not.dart';
 
 class RegisterBodyBlocButton extends StatelessWidget {
