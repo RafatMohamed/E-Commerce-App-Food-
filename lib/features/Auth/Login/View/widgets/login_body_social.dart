@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/images.dart';
-import '../../../SignUp/View/saveInfoAuth/save_phone.dart';
 import '../../../widgets/default_login_media.dart';
 import '../../logic/login_cubit.dart';
 import '../../logic/login_state.dart';

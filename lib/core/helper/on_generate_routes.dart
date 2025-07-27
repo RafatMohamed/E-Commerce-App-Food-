@@ -4,6 +4,7 @@ import 'package:food_app/features/splash&onBoarding/views/splash_view.dart';
 
 import '../../features/Auth/Login/View/login_view.dart';
 import '../../features/Auth/SignUp/View/sign_up_view.dart';
+import '../../features/Home/View/login_view.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings setting){
   switch(setting.name){
@@ -22,6 +23,10 @@ Route<dynamic> onGenerateRoute(RouteSettings setting){
      case SignUpView.routeName:
      return MaterialPageRoute(builder: (context) {
         return const SignUpView();
+      },);
+     case HomeView.routeName:
+     return MaterialPageRoute(builder: (context) {
+        return const HomeView();
       },);
     default:
       return MaterialPageRoute(builder: (context) {

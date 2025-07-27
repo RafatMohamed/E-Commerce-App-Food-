@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../../Home/View/login_view.dart';
 import '../../../SignUp/View/sign_up_view.dart';
-import '../../../SignUp/View/tets/test.dart';
 import '../../../widgets/have_account_or_not.dart';
 import '../../logic/login_cubit.dart';
 import '../../logic/login_state.dart';
@@ -40,14 +40,7 @@ class LoginBoBlocButton extends StatelessWidget {
           },
           listener: (context, state) {
             if (state is LoginSuccess) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const TestLogin();
-                  },
-                ),
-              );
+              Navigator.pushNamed(context, HomeView.routeName);
             }
             if (state is LoginFailure) {
               ScaffoldMessenger.of(context).showSnackBar(

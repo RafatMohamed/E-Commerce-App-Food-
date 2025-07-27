@@ -3,20 +3,11 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/core/constant.dart';
 import 'package:food_app/core/service/Firebase_service/fire_store.dart';
 import 'package:food_app/core/service/Firebase_service/firebase_auth.dart';
-import 'package:food_app/core/widgets/custom_text_form_field.dart';
 import '../../../../core/error/handel_error.dart';
 import '../../../../core/models/user_model.dart';
-import '../../../../core/service/get_it.dart';
-import '../../../../core/widgets/custom_button.dart';
-import '../../SignUp/View/saveInfoAuth/save_phone.dart';
-import '../../SignUp/View/tets/test.dart';
-import '../../SignUp/data/repo.dart';
-import '../../SignUp/logic/register_cubit.dart';
-import '../../SignUp/logic/register_state.dart';
 
 class LoginRepo {
   LoginRepo({
@@ -28,9 +19,9 @@ class LoginRepo {
   final FireStoreService fireStoreService;
   Future<Either<String, UserModel>> savePhoneNumber({required String phoneNumber}) async {
     try {
-      final user = await FirebaseAuth.instance.currentUser;
+      final user =  FirebaseAuth.instance.currentUser;
       if (user == null) {
-        return Left("No user is currently logged in.");
+        return const Left("No user is currently logged in.");
       }
       // Save the phone number manually to Firestore
       await fireStoreService.setUserData(
@@ -48,7 +39,7 @@ class LoginRepo {
       );
 
       if (userData == null) {
-        return Left("Failed to fetch updated user data.");
+        return const Left("Failed to fetch updated user data.");
       }
 
       return Right(UserModelInfo.fromMap(userData));

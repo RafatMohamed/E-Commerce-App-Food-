@@ -6,7 +6,7 @@ import 'package:food_app/features/Auth/Login/View/login_view.dart';
 import 'package:food_app/features/Auth/SignUp/logic/register_cubit.dart';
 import 'package:food_app/features/Auth/SignUp/logic/register_state.dart';
 import '../../../../../core/widgets/custom_button.dart';
-import '../../../SignUp/View/tets/test.dart';
+import '../../../../Home/View/login_view.dart';
 import '../../../widgets/have_account_or_not.dart';
 
 class RegisterBodyBlocButton extends StatelessWidget {
@@ -48,14 +48,7 @@ class RegisterBodyBlocButton extends StatelessWidget {
           },
           listener: (context, state) {
             if (state is RegisterSuccess) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const TestLogin();
-                  },
-                ),
-              );
+              Navigator.pushNamed(context, HomeView.routeName);
             }
             if (state is RegisterFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
