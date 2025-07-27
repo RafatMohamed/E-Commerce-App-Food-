@@ -6,6 +6,8 @@ import 'package:food_app/core/utils/images.dart';
 import 'package:food_app/features/Auth/Login/View/login_view.dart';
 import 'package:food_app/features/splash&onBoarding/views/onboarding_view.dart';
 
+import '../../Home/View/login_view.dart';
+
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
   static const String routeName ="Splash";
@@ -139,12 +141,20 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
         const Duration(seconds: 1), ()async {
       if (!mounted) return;
       bool seenOnBoarding=  PrefsStorage().getBool(kOnBoardingSeen);
+      bool signIn=  PrefsStorage().getBool(kSignIn);
      seenOnBoarding ?Navigator.pushReplacementNamed(
          context,
          LoginView.routeName
      ): Navigator.pushReplacementNamed(
         context,
         OnBoardingView.routeName
+      );
+     signIn ?Navigator.pushReplacementNamed(
+         context,
+         HomeView.routeName
+     ): Navigator.pushReplacementNamed(
+        context,
+        LoginView.routeName
       );
     });
   }

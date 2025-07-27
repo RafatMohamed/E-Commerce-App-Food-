@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/constant.dart' ;
+import '../../../../../core/service/StorageLocal/shared_prefs.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../Home/View/login_view.dart';
 import '../../../SignUp/View/sign_up_view.dart';
@@ -40,6 +42,7 @@ class LoginBoBlocButton extends StatelessWidget {
           },
           listener: (context, state) {
             if (state is LoginSuccess) {
+              signInOrNot(context);
               Navigator.pushNamed(context, HomeView.routeName);
             }
             if (state is LoginFailure) {
@@ -51,15 +54,15 @@ class LoginBoBlocButton extends StatelessWidget {
         ),
         HaveAccountOrNot(
           onPressed: () {
-            Navigator.pushNamed(
-              context,
-              SignUpView.routeName,
-            );
+            Navigator.pushNamed(context, SignUpView.routeName);
           },
           text: 'لا تمتلك حسابًا؟ ',
           textButton: 'قم بإنشاء حساب',
         ),
       ],
     );
+  }
+  void signInOrNot(BuildContext context) async{
+    await PrefsStorage().saveBool(kSignIn, true);
   }
 }

@@ -12,7 +12,7 @@ class HomeView extends StatelessWidget {
     return const Scaffold(
       body: SafeArea(child: HomeViewBody(
 
-      )),
+      ),),
     );
   }
 }
