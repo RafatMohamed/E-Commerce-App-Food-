@@ -28,7 +28,7 @@ class CustomSearchBar extends StatelessWidget {
         style: TextStyles.semiBold16.copyWith(color: AppColor.grayscale950),
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.done,
-        textDirection: TextDirection.ltr,
+        textDirection: TextDirection.rtl,
         textAlign: TextAlign.start,
         controller: TextEditingController(),
         onSaved:(newValue) {} ,

@@ -1,43 +1,29 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import '../../features/Home/View/home_view.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
-class DefaultBottomNavigationBar extends StatefulWidget {
-  const DefaultBottomNavigationBar({super.key});
-
-  @override
-  State<DefaultBottomNavigationBar> createState() =>
-      _DefaultBottomNavigationBarState();
-}
-
-class _DefaultBottomNavigationBarState extends State<DefaultBottomNavigationBar> {
-  int currentIndex = 0;
+class DefaultBottomNavigationBar extends StatelessWidget {
+  const DefaultBottomNavigationBar({super.key,required this.currentIndex, required this.onCurrentIndexChange});
+  final int currentIndex ;
+  final Function(int index) onCurrentIndexChange;
   @override
   Widget build(BuildContext context) {
     List<BottomNavigationBarModel> itemsNav = [
       BottomNavigationBarModel(
         icon: const Icon(Icons.home, color: AppColor.grayscale500),
         label: 'الرئيسية',
-        onTap: () {
-          Navigator.pushNamed(context, HomeView.routeName);
-        },
       ),
       BottomNavigationBarModel(
         icon: const Icon(Icons.category_outlined, color: AppColor.grayscale500),
         label: 'المنتجات',
-        onTap: () {},
       ),
       BottomNavigationBarModel(
         icon: const Icon(Icons.shopping_cart, color: AppColor.grayscale500),
         label: 'سلة التسوق',
-        onTap: () {},
       ),
       BottomNavigationBarModel(
         icon: const Icon(Icons.person, color: AppColor.grayscale500),
         label: 'حسابي',
-        onTap: () {},
       ),
     ];
     return ClipRRect(
@@ -74,15 +60,12 @@ class _DefaultBottomNavigationBarState extends State<DefaultBottomNavigationBar>
               final isSelected = index == currentIndex;
               return GestureDetector(
                 onTap: () {
-                  setState(() {
-                    currentIndex = itemsNav.indexOf(item);
-                    index == currentIndex;
-                  });
-                  item.onTap();
+                 onCurrentIndexChange(index);
                 },
                 child:
                 isSelected
-                    ? Container(
+                    ? AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
                   padding: const EdgeInsetsDirectional.only(start: 7),
                   alignment: AlignmentDirectional.centerEnd,
                   decoration: ShapeDecoration(
@@ -92,31 +75,45 @@ class _DefaultBottomNavigationBarState extends State<DefaultBottomNavigationBar>
                     ),
                   ),
                   child: Row(
-                    spacing: 4,
                     mainAxisSize: MainAxisSize.min,
+                    spacing: 4,
                     children: [
                       Text(
                         item.label,
+                    key: ValueKey('selected-${item.label}'),
                         style: TextStyles.semiBold11.copyWith(
                           color: AppColor.green1500,
                         ),
                       ),
-                      Container(
-                        width: 30,
-                        height: 30,
-                        decoration: const ShapeDecoration(
+                      AnimatedContainer(
+                        width: 50,
+                        height: 50,
+                        duration: const Duration(
+                          milliseconds: 200,
+                        ),
+                        curve: Curves.fastOutSlowIn,
+                        decoration:  ShapeDecoration(
                           color: AppColor.green1500,
-                          shape: OvalBorder(),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
                         ),
                         child:  Icon(
                           item.icon.icon,
+                          key: ValueKey('unselected-${item.label}'),
                           color: Colors.white,
                         ),
                       ),
                     ],
                   ),
                 )
-                    : item.icon,
+                    : AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.fastOutSlowIn,
+                    width: 40,
+                    height: 40,
+                    child: item.icon
+                ),
               );
             }).toList(),
           ),
@@ -129,10 +126,8 @@ class _DefaultBottomNavigationBarState extends State<DefaultBottomNavigationBar>
 class BottomNavigationBarModel {
   final String label;
   final Icon icon;
-  final Function() onTap;
 
   BottomNavigationBarModel({
-    required this.onTap,
     required this.label,
     required this.icon,
   });

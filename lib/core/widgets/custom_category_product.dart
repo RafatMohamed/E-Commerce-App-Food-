@@ -15,11 +15,12 @@ class CustomCategoryProduct extends StatelessWidget {
   final double price;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     return Stack(
         children:[
           Container(
             padding: const EdgeInsetsDirectional.only(top: 8,end: 10,bottom:20,start: 10),
-            width: 163,
+            width: size.width * 0.45,
             decoration: ShapeDecoration(
               color: const Color(0xFFF3F5F7),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
@@ -70,8 +71,7 @@ class CustomCategoryProduct extends StatelessWidget {
                         child: IconButton(
                           onPressed: onTapCartAdd,
                           padding: EdgeInsets.zero,
-                          icon: const Icon(Icons.add),
-                          color: Colors.white,
+                          icon: const Icon(Icons.add,color: Colors.white,),
                           alignment: AlignmentDirectional.center,
                         ),
                       ),

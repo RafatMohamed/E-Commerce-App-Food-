@@ -7,7 +7,7 @@ import 'package:food_app/features/Auth/SignUp/logic/register_state.dart';
 import '../../../../../core/constant.dart';
 import '../../../../../core/service/StorageLocal/shared_prefs.dart';
 import '../../../../../core/widgets/custom_button.dart';
-import '../../../../Home/View/home_view.dart';
+import '../../../../MainView/main_view.dart';
 import '../../../widgets/have_account_or_not.dart';
 
 class RegisterBodyBlocButton extends StatelessWidget {
@@ -50,7 +50,7 @@ class RegisterBodyBlocButton extends StatelessWidget {
           listener: (context, state) {
             if (state is RegisterSuccess) {
               signInOrNot(context);
-              Navigator.pushNamed(context, HomeView.routeName);
+              Navigator.pushNamed(context, MainView.routeName);
             }
             if (state is RegisterFailure) {
               ScaffoldMessenger.of(context).showSnackBar(

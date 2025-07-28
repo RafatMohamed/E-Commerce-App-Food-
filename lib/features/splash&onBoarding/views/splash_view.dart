@@ -5,8 +5,7 @@ import 'package:food_app/core/service/StorageLocal/shared_prefs.dart';
 import 'package:food_app/core/utils/images.dart';
 import 'package:food_app/features/Auth/Login/View/login_view.dart';
 import 'package:food_app/features/splash&onBoarding/views/onboarding_view.dart';
-
-import '../../Home/View/home_view.dart';
+import '../../MainView/main_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -151,7 +150,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
       );
      signIn ?Navigator.pushReplacementNamed(
          context,
-         HomeView.routeName
+         MainView.routeName
      ): Navigator.pushReplacementNamed(
         context,
         LoginView.routeName
