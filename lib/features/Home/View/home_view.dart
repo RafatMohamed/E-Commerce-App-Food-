@@ -11,8 +11,17 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     // final size = MediaQuery.sizeOf(context);
     return const Scaffold(
-      body: SafeArea(child: HomeViewBody()),
-      bottomNavigationBar: DefaultBottomNavigationBar(),
+      body: SafeArea(
+          child: Stack(
+            children: [
+          HomeViewBody(),
+          Positioned(
+              bottom: 10,
+              left: 10,
+              right: 10,
+              child: DefaultBottomNavigationBar()),
+        ],
+      )),
     );
   }
 }

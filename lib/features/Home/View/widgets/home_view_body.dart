@@ -12,16 +12,33 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.all(kDefaultPadding),
+        padding: EdgeInsets.symmetric(vertical: kDefaultPadding),
         child: Column(
           children: [
-            CustomAppBarHome(),
-            SizedBox(height: 16),
-            CustomSearchBar(),
-            SizedBox(height: 12),
-            DefaultOffers(),
-            SizedBox(height: 12),
-            DefaultBestSellers (),
+             Padding(
+               padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+               child: Column(
+                 children: [
+                   CustomAppBarHome(),
+                   SizedBox(height: 16),
+                   CustomSearchBar(),
+                   SizedBox(height: 12),
+                 ],
+               ),
+             ),
+            Padding(
+              padding:  EdgeInsets.only(right: kDefaultPadding,),
+              child:  DefaultOffers(),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              child: Column(
+                children: [
+                  SizedBox(height: 12),
+                  DefaultBestSellers (),
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../../features/Home/View/home_view.dart';
 import '../utils/app_colors.dart';
@@ -38,80 +40,87 @@ class _DefaultBottomNavigationBarState extends State<DefaultBottomNavigationBar>
         onTap: () {},
       ),
     ];
-    return Container(
-      height: 70,
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 27),
-      decoration: const ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
+    return ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(30)),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          height: 70,
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 27),
+          decoration:  ShapeDecoration(
+            gradient: LinearGradient(colors: [
+              Colors.white.withValues(alpha: 0.2),
+              Colors.white.withValues(alpha: 0.05),
+            ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            shadows: const [
+              BoxShadow(
+                color: Color(0x19000000),
+                blurRadius: 7,
+                offset: Offset(0, -2),
+                spreadRadius: 0,
+              ),
+            ],
+            shape: const Border(),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            textDirection: TextDirection.rtl,
+            children:
+            itemsNav.map((item) {
+              final index = itemsNav.indexOf(item);
+              final isSelected = index == currentIndex;
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    currentIndex = itemsNav.indexOf(item);
+                    index == currentIndex;
+                  });
+                  item.onTap();
+                },
+                child:
+                isSelected
+                    ? Container(
+                  padding: const EdgeInsetsDirectional.only(start: 7),
+                  alignment: AlignmentDirectional.centerEnd,
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFFEEEEEE),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: Row(
+                    spacing: 4,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        item.label,
+                        style: TextStyles.semiBold11.copyWith(
+                          color: AppColor.green1500,
+                        ),
+                      ),
+                      Container(
+                        width: 30,
+                        height: 30,
+                        decoration: const ShapeDecoration(
+                          color: AppColor.green1500,
+                          shape: OvalBorder(),
+                        ),
+                        child:  Icon(
+                          item.icon.icon,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+                    : item.icon,
+              );
+            }).toList(),
           ),
         ),
-        shadows: [
-          BoxShadow(
-            color: Color(0x19000000),
-            blurRadius: 7,
-            offset: Offset(0, -2),
-            spreadRadius: 0,
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        textDirection: TextDirection.rtl,
-        children:
-        itemsNav.map((item) {
-          final index = itemsNav.indexOf(item);
-          final isSelected = index == currentIndex;
-          return GestureDetector(
-            onTap: () {
-              setState(() {
-                currentIndex = itemsNav.indexOf(item);
-                index == currentIndex;
-              });
-              item.onTap();
-            },
-            child:
-            isSelected
-                ? Container(
-              padding: const EdgeInsetsDirectional.only(start: 7),
-              alignment: AlignmentDirectional.centerEnd,
-              decoration: ShapeDecoration(
-                color: const Color(0xFFEEEEEE),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-              child: Row(
-                spacing: 4,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    item.label,
-                    style: TextStyles.semiBold11.copyWith(
-                      color: AppColor.green1500,
-                    ),
-                  ),
-                  Container(
-                    width: 30,
-                    height: 30,
-                    decoration: const ShapeDecoration(
-                      color: AppColor.green1500,
-                      shape: OvalBorder(),
-                    ),
-                    child: const Icon(
-                      Icons.home,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            )
-                : item.icon,
-          );
-        }).toList(),
       ),
     );
   }
