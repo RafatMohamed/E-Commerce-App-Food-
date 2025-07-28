@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/features/splash&onBoarding/views/onboarding_view.dart';
 import 'package:food_app/features/splash&onBoarding/views/splash_view.dart';
-
 import '../../features/Auth/Login/View/login_view.dart';
 import '../../features/Auth/SignUp/View/sign_up_view.dart';
+import '../../features/Home/View/best_sellers_view.dart';
 import '../../features/Home/View/home_view.dart';
 import '../../features/MainView/main_view.dart';
 
@@ -32,6 +32,10 @@ Route<dynamic> onGenerateRoute(RouteSettings setting){
      case MainView.routeName:
      return MaterialPageRoute(builder: (context) {
         return const MainView();
+      },);
+     case BestSellersView.routeName:
+     return MaterialPageRoute(builder: (context) {
+        return const BestSellersView();
       },);
     default:
       return MaterialPageRoute(builder: (context) {

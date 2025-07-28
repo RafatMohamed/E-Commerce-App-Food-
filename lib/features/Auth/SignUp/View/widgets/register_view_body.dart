@@ -18,7 +18,7 @@ class RegisterViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar.customAppBar(
+      appBar: CustomAppBarRegister.customAppBar(
         isRegister: true,
         context: context,
         title: "حساب جديد",

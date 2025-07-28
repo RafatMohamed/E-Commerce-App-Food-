@@ -11,6 +11,7 @@ class CustomAppBarHome extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
     return ListTile(
+      contentPadding: EdgeInsets.zero,
       trailing: Image.asset(Assets.imagesProfileImage, fit: BoxFit.fill),
       title: Text(
         "..!صباح الخير ",
@@ -22,7 +23,9 @@ class CustomAppBarHome extends StatelessWidget {
         textAlign: TextAlign.end,
         style: TextStyles.bold16.copyWith(color: Colors.black),
       ),
-      leading: const CustomNotificationW(),
+      leading:  CustomNotificationW(
+        onTap: () {},
+      ),
     );
   }
 }

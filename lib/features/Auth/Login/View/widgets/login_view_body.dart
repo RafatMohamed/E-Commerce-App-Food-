@@ -19,7 +19,7 @@ class LoginViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar.customAppBar(
+      appBar: CustomAppBarRegister.customAppBar(
         isRegister: false,
         context: context,
         title: "تسجيل دخول",

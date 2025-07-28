@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/app_text_styles.dart';
-abstract class CustomAppBar {
+abstract class CustomAppBarRegister {
  static AppBar customAppBar(
       {
         required BuildContext context,
