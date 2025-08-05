@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_app/core/constant.dart';
+import 'package:food_app/core/service/Firebase_service/firebase_auth.dart';
 import 'package:food_app/core/service/StorageLocal/shared_prefs.dart';
 import 'package:food_app/core/utils/images.dart';
 import 'package:food_app/features/Auth/Login/View/login_view.dart';
@@ -140,7 +141,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
         const Duration(seconds: 1), ()async {
       if (!mounted) return;
       bool seenOnBoarding=  PrefsStorage().getBool(kOnBoardingSeen);
-      bool signIn=  PrefsStorage().getBool(kSignIn);
+      bool signIn=  FirebaseAuthService().isSignIn();
      seenOnBoarding ?Navigator.pushReplacementNamed(
          context,
          LoginView.routeName
@@ -158,3 +159,4 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     });
   }
 }
+

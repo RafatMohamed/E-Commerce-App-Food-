@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:food_app/core/utils/app_text_styles.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/images.dart';
+import 'default_item_cursor_offers.dart';
 
 
 class DefaultOffers extends StatelessWidget {
@@ -44,78 +44,6 @@ class DefaultOffers extends StatelessWidget {
   }
 }
 
-class DefaultItemCursor extends StatelessWidget {
-  const DefaultItemCursor({
-    super.key,
-    required this.size, required this.image, required this.color,
-  });
-
-  final Size size;
-  final String image;
-  final Color color ;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned(
-          top: 10,
-          left: 0,
-          bottom: 10,
-          child: Center(
-            child: Image.asset(
-              image,
-              width: size.width * 0.8,
-              height: 150,
-              fit: BoxFit.contain,
-            ),
-          ),
-        ),
-        Positioned(
-          top: 10,
-          right: 0,
-          bottom: 10,
-          child: ClipPath(
-            clipper: LeftOvalClipper(),
-            child: Container(
-              padding: EdgeInsetsDirectional.symmetric(horizontal: size.width * 0.09),
-              decoration: ShapeDecoration(
-                color: color,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                shadows: const [
-                  BoxShadow(
-                    color: Color(0xFFF3F5E0),
-                    blurRadius: 9,
-                    offset: Offset(0, 9),
-                    spreadRadius: 20,
-                  ),
-                ],
-              ),
-              width: size.width * 0.5,
-              height: 150,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    "عروض العيد",
-                    style: TextStyles.regular13.copyWith(color: Colors.white),
-                  ),
-                  Text(
-                    "20% off",
-                    style: TextStyles.bold19.copyWith(color: Colors.white),
-                  ),
-                  CustomButtonShopping(text: "اطلب الأن", onTap: () {}),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 class LeftOvalClipper extends CustomClipper<Path> {
   @override
@@ -149,31 +77,3 @@ class LeftOvalClipper extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
-class CustomButtonShopping extends StatelessWidget {
-  const CustomButtonShopping({
-    super.key,
-    required this.text,
-    required this.onTap,
-  });
-
-  final String text;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(4),
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-        child: Text(
-          text,
-          style: TextStyles.bold13.copyWith(color: AppColor.green1500),
-        ),
-      ),
-    );
-  }
-}

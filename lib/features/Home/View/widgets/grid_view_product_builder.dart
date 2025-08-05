@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/models/product_model.dart';
 import '../../../../core/widgets/custom_category_product.dart';
-import 'deffault_best_seller_widget.dart';
 
 class GridViewProduct extends StatelessWidget {
   const GridViewProduct({
@@ -25,11 +25,7 @@ class GridViewProduct extends StatelessWidget {
         childAspectRatio: 0.8,
       ),
       itemBuilder: (context, index) => CustomCategoryProduct(
-        image: products[index].image ,
-        title: products[index].title,
-        price:  products[index].price,
-        onTapCartAdd: products[index].onTapCartAdd,
-        onTapFavorite:products[index].onTapFavorite,
+        product: products[index],
       ),
     );
   }

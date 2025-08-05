@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/core/constant.dart';
-import 'package:food_app/core/service/Firebase_service/fire_store.dart';
+import 'package:food_app/core/service/Firebase_service/data_base_service.dart';
 import 'package:food_app/core/service/Firebase_service/firebase_auth.dart';
 import '../../../../core/error/handel_error.dart';
 import '../../../../core/models/user_model.dart';
@@ -16,7 +16,7 @@ class LoginRepo {
   });
 
   final FirebaseAuthService firebaseAuthService;
-  final FireStoreService fireStoreService;
+  final DataBaseService fireStoreService;
   Future<Either<String, UserModel>> savePhoneNumber({required String phoneNumber}) async {
     try {
       final user =  FirebaseAuth.instance.currentUser;
@@ -24,7 +24,7 @@ class LoginRepo {
         return const Left("No user is currently logged in.");
       }
       // Save the phone number manually to Firestore
-      await fireStoreService.setUserData(
+      await fireStoreService.setData(
         collectionName: kCollectionUserModel,
         path: user.uid,
         data: {
@@ -33,7 +33,7 @@ class LoginRepo {
       );
 
       // Re-fetch user data from Firestore
-      final userData = await fireStoreService.getUserData(
+      final userData = await fireStoreService.getData(
         collectionName: kCollectionUserModel,
         path: user.uid,
       );
@@ -59,7 +59,7 @@ class LoginRepo {
         emailAddress: email,
         password: password,
       );
-      final userData = await fireStoreService.getUserData(
+      final userData = await fireStoreService.getData(
         collectionName: kCollectionUserModel,
         path: user.uid,
       );
@@ -100,7 +100,7 @@ class LoginRepo {
     try {
       var user = await firebaseAuthService.signInWithGoogle();
 
-      final userData = await fireStoreService.getUserData(
+      final userData = await fireStoreService.getData(
         collectionName: kCollectionUserModel,
         path: user!.uid,
       );
@@ -109,7 +109,7 @@ class LoginRepo {
 
       if (userData == null) {
         userModel = UserModelInfo.fromFirebaseUser(user);
-        await fireStoreService.setUserData(
+        await fireStoreService.setData(
           collectionName: kCollectionUserModel,
           path: user.uid,
           data: userModel.toMap(),
@@ -131,7 +131,7 @@ class LoginRepo {
     try {
       var user = await firebaseAuthService.signInWithFacebook();
       final userModel = (UserModelInfo.fromFirebaseUser(user.user!));
-      await fireStoreService.setUserData(
+      await fireStoreService.setData(
         collectionName: kCollectionUserModel,
         path: user.user!.uid,
         data: userModel.toMap(),
@@ -141,5 +141,6 @@ class LoginRepo {
       return Left(getErrorMessage(e));
     }
   }
+
 }
 

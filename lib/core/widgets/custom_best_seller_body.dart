@@ -1,25 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_text_styles.dart';
-import '../best_sellers_view.dart';
-import 'grid_view_product_builder.dart';
-import 'list_product.dart';
-class ProductModel {
-  String image;
-  String title;
-  double price;
-  Function()? onTapCartAdd;
-  Function()? onTapFavorite;
-  ProductModel({
-    required this.image,
-    required this.title,
-    required this.price,
-    this.onTapCartAdd,
-    this.onTapFavorite,
-  });
-}
-class  DefaultBestSellers extends StatelessWidget {
-  const DefaultBestSellers({
+import '../../features/Home/View/best_sellers_view.dart';
+import '../../features/Home/View/widgets/product_builder_best_seller.dart';
+import '../utils/app_colors.dart';
+import '../utils/app_text_styles.dart';
+
+class CustomBestSellerBody extends StatelessWidget {
+  const CustomBestSellerBody({
     super.key,
   });
 
@@ -36,13 +22,13 @@ class  DefaultBestSellers extends StatelessWidget {
               },
               child: Container(
                 padding: const EdgeInsets.all(5),
-                decoration:  ShapeDecoration(
+                decoration: ShapeDecoration(
                   gradient: LinearGradient(
                     colors:
                     [
-                    Colors.white.withValues(alpha: 0.2),
-                    Colors.white.withValues(alpha: 0.05),
-                  ],
+                      Colors.white.withValues(alpha: 0.2),
+                      Colors.white.withValues(alpha: 0.05),
+                    ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -56,7 +42,7 @@ class  DefaultBestSellers extends StatelessWidget {
                   ],
                   shape: const Border(),
                 ),
-                child: Text("المزيد",style: TextStyles.regular13.copyWith(
+                child: Text("المزيد", style: TextStyles.regular13.copyWith(
                     color: AppColor.grayscale400),),
               ),
             ),
@@ -65,10 +51,8 @@ class  DefaultBestSellers extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8,),
-        GridViewProduct(products: products,productsCount: 6,),
+        const BlocBuilderBestSeller(),
       ],
     );
   }
 }
-
-

@@ -13,6 +13,9 @@ class FirebaseAuthService {
   Future<void> signOut() async {
     await _auth.signOut();
   }
+  bool isSignIn() {
+    return _auth.currentUser != null;
+  }
   Future<bool> isExistUser(bool isCheckExist) async {
     if (isCheckExist) {
       return _auth.currentUser != null;

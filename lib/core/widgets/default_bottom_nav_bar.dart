@@ -65,6 +65,7 @@ class DefaultBottomNavigationBar extends StatelessWidget {
                 child:
                 isSelected
                     ? AnimatedContainer(
+                  curve: Curves.bounceInOut,
                   duration: const Duration(milliseconds: 200),
                   padding: const EdgeInsetsDirectional.only(start: 7),
                   alignment: AlignmentDirectional.centerEnd,
@@ -109,7 +110,8 @@ class DefaultBottomNavigationBar extends StatelessWidget {
                 )
                     : AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
-                    curve: Curves.fastOutSlowIn,
+                    curve: Curves.easeOutCirc,
+                    color: Colors.transparent,
                     width: 40,
                     height: 40,
                     child: item.icon

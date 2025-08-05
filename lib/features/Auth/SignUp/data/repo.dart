@@ -4,14 +4,14 @@ import 'package:food_app/core/models/user_model.dart';
 import 'package:food_app/core/service/Firebase_service/firebase_auth.dart';
 import '../../../../core/constant.dart';
 import '../../../../core/error/handel_error.dart';
-import '../../../../core/service/Firebase_service/fire_store.dart';
+import '../../../../core/service/Firebase_service/data_base_service.dart';
 
 
 class RegisterRepo{
   RegisterRepo({required this.fireStore, required this.firebaseAuthService});
 
   final FirebaseAuthService firebaseAuthService;
-  final FireStoreService fireStore;
+  final DataBaseService fireStore;
 
   final FirebaseAuth auth=FirebaseAuth.instance;
 
@@ -26,7 +26,7 @@ class RegisterRepo{
       'phoneNumber': phoneNumber,
       'uid': user.uid,
     };
-      await fireStore.setUserData(path: user.uid, data: userData, collectionName: kCollectionUserModel);
+      await fireStore.setData(path: user.uid, data: userData, collectionName: kCollectionUserModel);
       return right(UserModelInfo.fromFirebaseUser(user));
     } on FirebaseAuthException catch (e) {
       return Left(getErrorMessage(e));

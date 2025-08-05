@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/features/Auth/SignUp/logic/register_cubit.dart';
 import 'package:food_app/features/Auth/SignUp/logic/register_state.dart';
-import '../../../../../core/constant.dart';
-import '../../../../../core/service/StorageLocal/shared_prefs.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../MainView/main_view.dart';
 import '../../../widgets/have_account_or_not.dart';
@@ -49,7 +47,6 @@ class RegisterBodyBlocButton extends StatelessWidget {
           },
           listener: (context, state) {
             if (state is RegisterSuccess) {
-              signInOrNot(context);
               Navigator.pushNamed(context, MainView.routeName);
             }
             if (state is RegisterFailure) {
@@ -69,8 +66,5 @@ class RegisterBodyBlocButton extends StatelessWidget {
         ),
       ],
     );
-  }
-  void signInOrNot(BuildContext context) async{
-    await PrefsStorage().saveBool(kSignIn, true);
   }
 }
