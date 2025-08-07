@@ -5,7 +5,7 @@ import '../utils/app_text_styles.dart';
 import 'custom_arrow_back_w.dart';
 import 'custom_notif_w.dart';
 
-AppBar customAppBar({required BuildContext context, required String title, bool arrowBackVisible = true}) {
+AppBar customAppBar({required BuildContext context, required String title, bool arrowBackVisible = true, bool notificaionVisible = true}) {
   return AppBar(
     automaticallyImplyLeading: false,
     centerTitle: true,
@@ -15,8 +15,11 @@ AppBar customAppBar({required BuildContext context, required String title, bool 
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children:  [
-        CustomNotificationW(
-          onTap: () {},
+        Visibility(
+          visible: notificaionVisible,
+          child: CustomNotificationW(
+            onTap: () {},
+          ),
         ),
         Text(title,style: TextStyles.bold16.copyWith(color: AppColor.grayscale950),),
         Visibility(

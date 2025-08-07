@@ -2,12 +2,12 @@ import 'package:food_app/core/models/review_model.dart';
 
 class ProductModel {
   final String name;
-  final String price;
+  final num price;
   final String description;
   final String code;
   final bool isFeatured;
-  final String quantity;
-  final String? imagePath; // Changed from File to String? (URL or local path)
+  final num quantity;
+  final String? imagePath;
   final bool isOriginal;
   final int shelf_life;
   final num rate;
@@ -36,11 +36,11 @@ class ProductModel {
 
 class ProductModelInitial {
   final String name;
-  final String price;
+  final num price;
   final String description;
   final String code;
   final bool isFeatured;
-  final String quantity;
+  final num quantity;
   final String? imagePath;
   final bool isOriginal;
   final int shelf_life;
@@ -71,11 +71,11 @@ class ProductModelInitial {
   factory ProductModelInitial.fromJson(Map<String, dynamic> json) {
     return ProductModelInitial(
       name: json['name'] ?? '',
-      price: json['price'] ?? '',
+      price: json['price'] ?? 0,
       description: json['description'] ?? '',
       code: json['code'] ?? '',
       isFeatured: json['isFeatured'] ?? false,
-      quantity: json['quantity'] ?? '0',
+      quantity: json['quantity'] ?? 0,
       imagePath: json['imagePath'],
       isOriginal: json['isOriginal'] ?? true,
       shelf_life: json['shelf_life'] ?? 0,

@@ -14,6 +14,7 @@ class CustomButton extends StatelessWidget {
     return GestureDetector(
       onTap:onTap ,
       child: Container(
+        // padding: EdgeInsets.all(1),
         height: 55,
         width: double.infinity,
         decoration: const BoxDecoration(
@@ -22,6 +23,8 @@ class CustomButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
             text,
             style: TextStyles.bold16.copyWith(color: Colors.white),
           ),

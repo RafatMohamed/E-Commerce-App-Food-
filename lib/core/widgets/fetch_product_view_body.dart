@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/Home/View/widgets/grid_view_product_builder.dart';
 import '../../features/Home/logic/ProductCubit/product_cubit.dart';
 import '../../features/Home/logic/ProductCubit/product_state.dart';
+import '../../features/cart/logic/cart_cubit.dart';
 
 class BlocBuilderFetchProductViewView extends StatefulWidget {
   const BlocBuilderFetchProductViewView({
@@ -24,14 +25,15 @@ class _BlocBuilderFetchProductViewViewState extends State<BlocBuilderFetchProduc
 
   @override
   Widget build(BuildContext context) {
+    final cartModel = context.watch<CartCubit>();
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
         if (state is ProductSuccess) {
           final product = state.products;
           return GridViewProduct(
             isHomeView: false,
-            products: product,
-            productsCount: product.length,
+            products:product,
+            productsCount: cartModel.cartModel.cartItem.length,
           );
         }
         else if (state is ProductError) {

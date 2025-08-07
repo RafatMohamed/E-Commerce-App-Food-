@@ -46,4 +46,8 @@ class Assets {
   static const String pineapple= "assets/images/pineapple-fruit-transparent-background-free-png 1.png";
   static const String strawberry= "assets/images/strawberry.png";
   static const String oval= "assets/images/ovall.png";
+  static const String calendar= "assets/images/calendar.svg";
+  static const String lotus= "assets/images/lotus.svg";
+  static const String calories= "assets/images/matches 1.svg";
+  static const String stars= "assets/images/star.svg";
 }
