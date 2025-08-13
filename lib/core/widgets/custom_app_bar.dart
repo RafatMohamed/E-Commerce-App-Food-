@@ -17,6 +17,10 @@ AppBar customAppBar({required BuildContext context, required String title, bool 
       children:  [
         Visibility(
           visible: notificaionVisible,
+          replacement: const SizedBox(
+            width: 44,
+            height: 44,
+          ),
           child: CustomNotificationW(
             onTap: () {},
           ),

@@ -50,4 +50,6 @@ class Assets {
   static const String lotus= "assets/images/lotus.svg";
   static const String calories= "assets/images/matches 1.svg";
   static const String stars= "assets/images/star.svg";
+  static const String masterCard= "assets/images/Mastercard.svg";
+  static const String paypal= "assets/images/Paypal.svg";
 }

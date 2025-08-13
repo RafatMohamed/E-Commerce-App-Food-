@@ -12,7 +12,7 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     required this.onSaved,
     required this.obscureText,
-    required this.textInputAction, required this.focusNode,
+    required this.textInputAction,  this.focusNode,this.isvalidate=true
 
   });
   final String hintText;
@@ -22,18 +22,19 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final Function(String?) onSaved;
   final bool obscureText;
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
+  final bool isvalidate;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       focusNode:focusNode ,
       autofocus: false,
-      validator: (value) {
+      validator: isvalidate? (value) {
         if(value==null || value.isEmpty){
           return "هذا الحقل مطوب";
         }
         return null;
-      },
+      }: null,
       scrollPhysics: const BouncingScrollPhysics(),
       style: TextStyles.semiBold16.copyWith(color: AppColor.grayscale950),
       keyboardType: keyboardType,

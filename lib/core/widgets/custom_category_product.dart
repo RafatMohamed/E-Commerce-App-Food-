@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app/core/constant.dart';
 import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/core/utils/app_text_styles.dart';
 import 'package:food_app/features/cart/data/cart_item_model.dart';
 import 'package:food_app/features/cart/view/item_details_cart_view.dart';
-import '../../features/cart/data/cart_model.dart';
 import '../../features/cart/logic/cart_cubit.dart';
 import '../models/product_model.dart';
 import '../utils/images.dart';

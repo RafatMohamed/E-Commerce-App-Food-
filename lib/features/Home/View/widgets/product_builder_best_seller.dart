@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../cart/logic/cart_cubit.dart';
 import '../../logic/ProductCubit/product_cubit.dart';
 import '../../logic/ProductCubit/product_state.dart';
 import 'grid_view_product_builder.dart';
@@ -23,7 +22,6 @@ class _BlocBuilderBestSellerState extends State<BlocBuilderBestSeller> {
   }
   @override
   Widget build(BuildContext context) {
-    final cartModel = context.watch<CartCubit>();
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
         if (state is ProductSuccess) {

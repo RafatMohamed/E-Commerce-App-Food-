@@ -3,6 +3,7 @@ import 'package:food_app/features/splash&onBoarding/views/onboarding_view.dart';
 import 'package:food_app/features/splash&onBoarding/views/splash_view.dart';
 import '../../features/Auth/Login/View/login_view.dart';
 import '../../features/Auth/SignUp/View/sign_up_view.dart';
+import '../../features/Checkout/view/check_out_view.dart';
 import '../../features/Home/View/best_sellers_view.dart';
 import '../../features/Home/View/home_view.dart';
 import '../../features/cart/data/cart_item_model.dart';
@@ -11,7 +12,6 @@ import '../../features/cart/view/item_details_cart_view.dart';
 import '../../features/product/View/product_view.dart';
 import '../../features/product/View/filter_category_product_view.dart';
 import '../../features/MainView/main_view.dart';
-import '../models/product_model.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings setting){
   switch(setting.name){
@@ -46,6 +46,10 @@ Route<dynamic> onGenerateRoute(RouteSettings setting){
      case ProductView.routeName:
      return MaterialPageRoute(builder: (context) {
         return const ProductView();
+      },);
+     case CheckOutView.routeName:
+     return MaterialPageRoute(builder: (context) {
+        return const CheckOutView();
       },);
      case FilterCategoryProductView.routeName:
      return MaterialPageRoute(builder: (context) {

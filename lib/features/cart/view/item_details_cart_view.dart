@@ -5,8 +5,6 @@ import 'package:food_app/core/constant.dart';
 import 'package:food_app/core/widgets/build_img_product.dart';
 import 'package:food_app/core/widgets/custom_star_button.dart';
 import 'package:food_app/features/cart/view/widgets/custom_list_view_cart.dart';
-
-import '../../../core/models/product_model.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_text_styles.dart';
 import '../../../core/utils/images.dart';
@@ -207,7 +205,7 @@ class ItemDetailsCartView extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                       '${productModel.description}',
+                       productModel.description,
                         style: TextStyles.regular13.copyWith(
                           color: const Color(0xFF969899),
                           fontSize: 13,
@@ -257,7 +255,7 @@ class CustomItemCartDetails extends StatelessWidget {
       children: [
         Container(
           height: 120,
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             top: 16,
             bottom: 16,
             left: 16,
@@ -293,15 +291,15 @@ class CustomItemCartDetails extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "${title}",
+                      title,
                       textAlign: TextAlign.right,
                       style: TextStyles.bold16.copyWith(
                         color: const Color(0xFF23AA49),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
-                      "${desc}",
+                      desc,
                       textAlign: TextAlign.right,
                       style: TextStyles.regular13.copyWith(
                         color: const Color(0xFF969899),

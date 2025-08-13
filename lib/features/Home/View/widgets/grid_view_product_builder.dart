@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app/features/cart/data/cart_item_model.dart';
-
 import '../../../../core/models/product_model.dart';
 import '../../../../core/widgets/custom_category_product.dart';
-import '../../../cart/logic/cart_cubit.dart';
 
 class GridViewProduct extends StatelessWidget {
   const GridViewProduct({

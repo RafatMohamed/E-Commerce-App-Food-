@@ -74,7 +74,7 @@ class CustomListViewCart extends StatelessWidget {
                             ' جنيه ${cartItem.calculateTotalPriceItem()}  ',
                             softWrap: true,
                             textWidthBasis: TextWidthBasis.parent,
-                            style: TextStyle(
+                            style: const TextStyle(
                               overflow: TextOverflow.ellipsis,
                               color: Color(0xFFF4A91F) /* Orange-500 */,
                               fontSize: 16,
@@ -83,7 +83,7 @@ class CustomListViewCart extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         CustomButtonsAddRemoveWithCount(cartItem: cartItem),
                       ],
                     ),

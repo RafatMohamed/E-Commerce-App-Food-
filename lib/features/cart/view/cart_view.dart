@@ -4,6 +4,7 @@ import 'package:food_app/core/widgets/custom_app_bar.dart';
 import 'package:food_app/features/cart/view/widgets/cart_view_body.dart';
 
 import '../../../core/widgets/custom_button.dart';
+import '../../Checkout/view/check_out_view.dart';
 import '../logic/cart_cubit.dart';
 
 class CartView extends StatelessWidget {
@@ -27,7 +28,9 @@ class CartView extends StatelessWidget {
                 bottom: 100,
                 right: 16,
                 left: 16,
-                child: CustomButton(text: "الدفع  ${context.watch<CartCubit>().cartModel.claculateTotalprice()} جنيه ",onTap: () {},
+                child: CustomButton(text: "الدفع  ${context.watch<CartCubit>().cartModel.claculateTotalprice()} جنيه ",onTap: () {
+                  Navigator.pushNamed(context, CheckOutView.routeName);
+                },
                 )
             )
           ],

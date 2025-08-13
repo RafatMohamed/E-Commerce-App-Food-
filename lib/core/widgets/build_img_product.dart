@@ -15,7 +15,7 @@ Widget buildProductImage({required String? imagePath,bool isScaleCover =true,boo
           shape: BoxShape.circle,
         ),
         child: Image.network(
-          imagePath,
+          "https://tkckdapnovajnxsukzys.supabase.co/storage/v1/object/public/images/images/1000469047.jpg",
           fit: isScaleCover ? BoxFit.cover : BoxFit.scaleDown,
           errorBuilder: (context, error, stackTrace) =>
           const Icon(Icons.broken_image),
