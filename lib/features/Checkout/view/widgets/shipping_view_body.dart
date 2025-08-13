@@ -1,16 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:food_app/core/utils/app_colors.dart';
-import 'package:food_app/core/utils/app_text_styles.dart';
-import 'package:food_app/core/widgets/custom_button.dart';
 import 'package:food_app/features/Checkout/view/widgets/shipping_items_selected.dart';
-
-import '../../../../core/utils/images.dart';
-import '../../../../core/widgets/custom_text_form_field.dart';
-import 'check_out_view_body.dart';
-import 'list_step_checkout.dart';
 
 
 class ShippingViewBody extends StatefulWidget {
@@ -38,7 +27,7 @@ class _ShippingViewBodyState extends State<ShippingViewBody> {
             });
           },
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         ShippingItemsSelected(
           text: "اشتري الان وادفع لاحقا",
           subText: "يرجي تحديد طريقه الدفع",

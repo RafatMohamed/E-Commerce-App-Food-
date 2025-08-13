@@ -5,9 +5,9 @@ import 'package:food_app/features/Checkout/view/widgets/shipping_view_body.dart'
 
 import '../../../../core/utils/images.dart';
 import 'address_view_body.dart';
-import 'check_out_view_body.dart';
+
 final List<String> listStepCheckout = ["الشحن", "العنوان", "الدفع","المراجعه",];
-final List<Widget> PagesViewCheckOut = [
+final List<Widget> pagesViewCheckOut = [
   const ShippingViewBody(),
   const AddressViewBody(),
   const PaymentViewBody(),

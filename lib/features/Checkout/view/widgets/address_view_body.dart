@@ -12,17 +12,30 @@ class AddressViewBody extends StatefulWidget {
 
 class _AddressViewBodyState extends State<AddressViewBody> {
   bool isSwitch = true;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController cityController = TextEditingController();
+  final TextEditingController numberHouseController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+
+  final GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    addressController.dispose();
+    cityController.dispose();
+    numberHouseController.dispose();
+    nameController.dispose();
+    phoneController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController addressController = TextEditingController();
-    final TextEditingController cityController = TextEditingController();
-    final TextEditingController numberHouseController = TextEditingController();
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController phoneController = TextEditingController();
-
-    final GlobalKey<FormState> formKey = GlobalKey();
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
     return Form(
       autovalidateMode: autovalidateMode,
       key: formKey,
@@ -99,7 +112,7 @@ class _AddressViewBodyState extends State<AddressViewBody> {
                 "حفظ العنوان",
                 style: TextStyle(color: AppColor.grayscale950),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Switch(
                 value: isSwitch,
                 onChanged: (value) {

@@ -22,7 +22,7 @@ class ShippingItemsSelected extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         height: 90,
         width: double.infinity,
         padding: const EdgeInsets.only(top: 16, left: 13, bottom: 16),
@@ -31,9 +31,9 @@ class ShippingItemsSelected extends StatelessWidget {
             ? ShapeDecoration(
           color: const Color(0x33D9D9D9),
           shape: RoundedRectangleBorder(
-            side: BorderSide(
+            side: const BorderSide(
               width: 1,
-              color: const Color(0xFF1B5E37) /* Green1-500 */,
+              color: Color(0xFF1B5E37) /* Green1-500 */,
             ),
             borderRadius: BorderRadius.circular(4),
           ),
@@ -50,7 +50,7 @@ class ShippingItemsSelected extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '${price} جنيه  ',
+              '$price جنيه  ',
               style: TextStyles.bold13.copyWith(color: AppColor.green1500),
               textDirection: TextDirection.rtl,
             ),
@@ -70,18 +70,18 @@ class ShippingItemsSelected extends StatelessWidget {
                     Text(
                       subText,
                       style: TextStyles.regular13.copyWith(
-                        color: Colors.black.withOpacity(0.5),
+                        color: Colors.black.withValues(alpha: 0.5),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 isSelected
                     ? Container(
                   width: 18,
                   height: 18,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFF1B5E37) /* Green1-500 */,
+                  decoration: const ShapeDecoration(
+                    color: Color(0xFF1B5E37) /* Green1-500 */,
                     shape: OvalBorder(
                       side: BorderSide(width: 4, color: Colors.white),
                     ),
@@ -90,11 +90,11 @@ class ShippingItemsSelected extends StatelessWidget {
                     : Container(
                   width: 18,
                   height: 18,
-                  decoration: ShapeDecoration(
+                  decoration: const ShapeDecoration(
                     shape: OvalBorder(
                       side: BorderSide(
                         width: 1,
-                        color: const Color(0xFF949D9E),
+                        color: Color(0xFF949D9E),
                       ),
                     ),
                   ),

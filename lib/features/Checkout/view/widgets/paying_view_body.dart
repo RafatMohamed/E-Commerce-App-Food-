@@ -1,13 +1,8 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/core/utils/app_text_styles.dart';
-import 'package:food_app/core/widgets/custom_button.dart';
-
-import '../../../../core/utils/images.dart';
-import '../../../../core/widgets/custom_text_form_field.dart';
 import'list_step_checkout.dart';
 
 
@@ -30,13 +25,13 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
           'أختار طريقه الدفع المناسبه :',
           style: TextStyles.bold13.copyWith(color: AppColor.grayscale950),
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         Text(
           'من فضلك اختر طريقه الدفع المناسبه لك.',
           textAlign: TextAlign.right,
           style: TextStyles.regular13.copyWith(color: AppColor.grayscale600),
         ),
-        SizedBox(height: 25),
+        const SizedBox(height: 25),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(cards.length, (index) {

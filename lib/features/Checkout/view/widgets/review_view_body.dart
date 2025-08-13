@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/core/utils/app_text_styles.dart';
-import 'package:food_app/core/widgets/custom_button.dart';
-
-import '../../../../core/utils/images.dart';
-import '../../../../core/widgets/custom_text_form_field.dart';
 import 'list_step_checkout.dart';
 
 class ReviewViewBody extends StatelessWidget {
@@ -24,7 +16,7 @@ class ReviewViewBody extends StatelessWidget {
           textDirection: TextDirection.rtl,
           style: TextStyles.bold13.copyWith(color: AppColor.grayscale950),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
           clipBehavior: Clip.antiAlias,
@@ -57,7 +49,7 @@ class ReviewViewBody extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,9 +71,9 @@ class ReviewViewBody extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 8),
-              Divider(thickness: 0.5, endIndent: 16, indent: 16),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
+              const Divider(thickness: 0.5, endIndent: 16, indent: 16),
+              const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,13 +98,13 @@ class ReviewViewBody extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Text(
-          'ملخص الطلب :',
+          ' يرجي تأكيد  طلبك :',
           textDirection: TextDirection.rtl,
           style: TextStyles.bold13.copyWith(color: AppColor.grayscale950),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
           clipBehavior: Clip.antiAlias,
@@ -140,7 +132,7 @@ class ReviewViewBody extends StatelessWidget {
                             color: AppColor.grayscale400,
                           ),
                         ),
-                        Icon(Icons.edit,size: 16,color: AppColor.grayscale400,),
+                        const Icon(Icons.edit,size: 16,color: AppColor.grayscale400,),
                       ],
                     ),
                   ),
@@ -153,7 +145,7 @@ class ReviewViewBody extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,7 +166,7 @@ class ReviewViewBody extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
           clipBehavior: Clip.antiAlias,
@@ -202,7 +194,7 @@ class ReviewViewBody extends StatelessWidget {
                             color: AppColor.grayscale400,
                           ),
                         ),
-                        Icon(Icons.edit,size: 16,color: AppColor.grayscale400,),
+                        const Icon(Icons.edit,size: 16,color: AppColor.grayscale400,),
                       ],
                     ),
                   ),
@@ -215,7 +207,7 @@ class ReviewViewBody extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -227,8 +219,8 @@ class ReviewViewBody extends StatelessWidget {
                       color: AppColor.grayscale500,
                     ),
                   ),
-                  SizedBox(width: 8),
-                  Icon(Icons.location_on,size: 16,color: AppColor.grayscale400,),
+                  const SizedBox(width: 8),
+                  const Icon(Icons.location_on,size: 16,color: AppColor.grayscale400,),
                 ],
               ),
             ],
