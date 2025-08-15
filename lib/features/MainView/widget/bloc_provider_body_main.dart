@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app/core/helper/snacbar_meesage.dart';
 
 import '../../cart/logic/cart_cubit.dart';
 
@@ -20,10 +21,10 @@ class BlocProviderBody extends StatelessWidget {
     return BlocListener<CartCubit, CartState>(
       listener: (context, state) {
         if (state is CartAddSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Product added to cart')));
+showSnackBarMessage(context: context, message: 'Product added to cart');
         }
         if (state is CartRemoveSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Product removed from cart')));
+showSnackBarMessage(context: context, message: 'Product removed from cart')   ;
         }
       },
       child: IndexedStack(index: _currentIndex, children: _screens),

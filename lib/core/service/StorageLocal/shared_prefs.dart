@@ -10,7 +10,12 @@ class PrefsStorage {
     _prefs = await SharedPreferences.getInstance();
     // await _prefs?.clear();
   }
-
+  Future<void> saveString(String key, String value) async {
+    await _prefs?.setString(key, value);
+  }
+  String getString(String key) {
+    return _prefs?.getString(key) ?? '';
+  }
   Future<void> saveBool(String key, bool value) async {
     await _prefs?.setBool(key, value);
   }

@@ -1,14 +1,17 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/core/utils/app_text_styles.dart';
+import 'package:food_app/features/Checkout/data/Model/order_model.dart';
 import'list_step_checkout.dart';
 
 
 class PaymentViewBody extends StatefulWidget {
-  const PaymentViewBody({super.key});
-
+  const PaymentViewBody({super.key, required this.order});
+  final OrderModel order;
   @override
   State<PaymentViewBody> createState() => _PaymentViewBodyState();
 }
@@ -64,6 +67,13 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
             );
           }),
         ),
+        const SizedBox(height: 10),
+        IconButton(onPressed: (){
+          log(widget.order.isCash.toString());
+          log(widget.order.addressOrderModel!.name);
+          log(widget.order.addressOrderModel!.numberFloor?? "floor");
+          log(widget.order.cartModel.cartItem.first.productModel.code);
+        }, icon: const Icon(Icons.ac_unit))
       ],
     );
   }

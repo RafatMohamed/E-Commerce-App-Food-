@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app/core/helper/snacbar_meesage.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../MainView/main_view.dart';
 import '../../../SignUp/View/sign_up_view.dart';
@@ -43,9 +44,7 @@ class LoginBoBlocButton extends StatelessWidget {
               Navigator.pushNamed(context, MainView.routeName);
             }
             if (state is LoginFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.error)),
-              );
+             showSnackBarMessage(context: context, message: state.error);
             }
           },
         ),

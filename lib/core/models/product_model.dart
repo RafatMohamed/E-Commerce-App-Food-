@@ -32,6 +32,47 @@ class ProductModel {
     required this.weight_grams_per_unit,
     required this.reviews,
   });
+
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      name: json['name'] ?? '',
+      price: json['price'] ?? 0,
+      description: json['description'] ?? '',
+      code: json['code'] ?? '',
+      isFeatured: json['isFeatured'] ?? false,
+      quantity: json['quantity'] ?? 0,
+      imagePath: json['imagePath'],
+      isOriginal: json['isOriginal'] ?? true,
+      shelf_life: json['shelf_life'] ?? 0,
+      rate: json['rate'] ?? 0,
+      ratingCount: json['ratingCount'] ?? 0,
+      calories: json['calories'] ?? 0,
+      weight_grams_per_unit: json['weight_grams_per_unit'] ?? 0,
+      reviews: (json['reviews'] as List<dynamic>? ?? [])
+          .map((reviewJson) => ReviewModel.fromJson(reviewJson))
+          .toList(),
+    );
+  }
+
+  /// 📤 To JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'price': price,
+      'description': description,
+      'code': code,
+      'isFeatured': isFeatured,
+      'quantity': quantity,
+      'imagePath': imagePath,
+      'isOriginal': isOriginal,
+      'shelf_life': shelf_life,
+      'rate': rate,
+      'ratingCount': ratingCount,
+      'calories': calories,
+      'weight_grams_per_unit': weight_grams_per_unit,
+      'reviews': reviews.map((r) => r.toJson()).toList(),
+    };
+  }
 }
 
 class ProductModelInitial {

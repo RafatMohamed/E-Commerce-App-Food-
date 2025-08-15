@@ -7,10 +7,24 @@ class CartItemModel{
   CartModel cartModel=CartModel(cartItem: []);
   CartItemModel({required this.productModel,this.count=0});
 
+  factory CartItemModel.fromJson(Map<String, dynamic> json) {
+    return CartItemModel(
+      productModel: ProductModel.fromJson(json['productModel']),
+      count: json['count'] ?? 0,
+    );
+  }
+
+  /// 📤 To JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'productModel': productModel.toJson(),
+      'count': count,
+    };
+  }
+
   int incrementCount(){
   return  count++;
   }
-
   int decrementCount(){
    return count--;
   }

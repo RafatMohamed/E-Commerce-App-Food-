@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/features/cart/data/cart_model.dart';
 import 'package:food_app/features/splash&onBoarding/views/onboarding_view.dart';
 import 'package:food_app/features/splash&onBoarding/views/splash_view.dart';
 import '../../features/Auth/Login/View/login_view.dart';
@@ -49,7 +50,9 @@ Route<dynamic> onGenerateRoute(RouteSettings setting){
       },);
      case CheckOutView.routeName:
      return MaterialPageRoute(builder: (context) {
-        return const CheckOutView();
+        return  CheckOutView(
+          cart: setting.arguments as CartModel,
+        );
       },);
      case FilterCategoryProductView.routeName:
      return MaterialPageRoute(builder: (context) {

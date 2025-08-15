@@ -1,45 +1,123 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:food_app/features/Checkout/data/Model/order_model.dart';
 import 'package:food_app/features/Checkout/view/widgets/shipping_items_selected.dart';
 
-
+import '../../../../core/constant.dart';
+import '../../../../core/service/StorageLocal/shared_prefs.dart';
 class ShippingViewBody extends StatefulWidget {
-  const ShippingViewBody({super.key});
-
+  const ShippingViewBody({super.key, required this.order});
+  final OrderModel order;
   @override
   State<ShippingViewBody> createState() => _ShippingViewBodyState();
 }
+class _ShippingViewBodyState extends State<ShippingViewBody> with AutomaticKeepAliveClientMixin{
+  final ValueNotifier<bool> isSelectedNotifier = ValueNotifier(false);
 
-class _ShippingViewBodyState extends State<ShippingViewBody> {
-  bool isSelected = false;
+  @override
+  void dispose() {
+    isSelectedNotifier.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Column(
       children: [
-        ShippingItemsSelected(
-          text: "الدفع عند الاستلام",
-          subText: "التسليم من المكان",
-          price: 40,
-          isSelected: isSelected,
-          onTap: () {
-            setState(() {
-              isSelected = !isSelected;
-            });
+        ValueListenableBuilder<bool>(
+          valueListenable: isSelectedNotifier,
+          builder: (context, isSelected, _) {
+            return ShippingItemsSelected(
+              text: "الدفع عند الاستلام",
+              subText: "التسليم من المكان",
+              price: widget.order.cartModel.claculateTotalprice().toInt()+30,
+              isSelected: isSelected,
+              onTap: (){
+                isSelectedNotifier.value = true;
+                setState(() {});
+                widget.order.isCash=isSelectedNotifier.value;
+                PrefsStorage().saveBool(pIsCash, widget.order.isCash!);
+              },
+            );
           },
         ),
         const SizedBox(height: 10),
-        ShippingItemsSelected(
-          text: "اشتري الان وادفع لاحقا",
-          subText: "يرجي تحديد طريقه الدفع",
-          price: 0,
-          isSelected: !isSelected,
-          onTap: () {
-            setState(() {
-              isSelected = !isSelected;
-            });
+        ValueListenableBuilder<bool>(
+          valueListenable: isSelectedNotifier,
+          builder: (context, isSelected, _) {
+            return ShippingItemsSelected(
+              text: "اشتري الان وادفع لاحقا",
+              subText: "يرجي تحديد طريقه الدفع",
+              price: widget.order.cartModel.claculateTotalprice().toInt()+0,
+              isSelected: !isSelected,
+              onTap: () {
+                isSelectedNotifier.value = false;
+                setState(() {});
+                widget.order.isCash=isSelectedNotifier.value;
+                PrefsStorage().saveBool(pIsCash, widget.order.isCash!);
+              },
+            );
           },
         ),
+        const SizedBox(height: 10),
+        IconButton(onPressed: (){
+          log(widget.order.isCash.toString());
+        }, icon: const Icon(Icons.ac_unit))
       ],
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive =>true;
 }
+
+// class ShippingViewBody extends StatefulWidget {
+//   const ShippingViewBody({super.key});
+//
+//   @override
+//   State<ShippingViewBody> createState() => _ShippingViewBodyState();
+// }
+//
+// class _ShippingViewBodyState extends State<ShippingViewBody> with AutomaticKeepAliveClientMixin{
+//
+//   bool isSelected = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     super.build(context);
+//     return Column(
+//       children: [
+//         ShippingItemsSelected(
+//           text: "الدفع عند الاستلام",
+//           subText: "التسليم من المكان",
+//           price: 40,
+//           isSelected: isSelected,
+//           onTap: () {
+//             setState(() {
+//               isSelected = !isSelected;
+//             });
+//           },
+//         ),
+//         const SizedBox(height: 10),
+//         ShippingItemsSelected(
+//           text: "اشتري الان وادفع لاحقا",
+//           subText: "يرجي تحديد طريقه الدفع",
+//           price: 0,
+//           isSelected: !isSelected,
+//           onTap: () {
+//             setState(() {
+//               isSelected = !isSelected;
+//             });
+//           },
+//         ),
+//       ],
+//     );
+//   }
+//
+//   @override
+//   // TODO: implement wantKeepAlive
+//   bool get wantKeepAlive => true;
+// }

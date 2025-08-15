@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app/core/helper/snacbar_meesage.dart';
 import 'package:food_app/features/Auth/SignUp/logic/register_cubit.dart';
 import 'package:food_app/features/Auth/SignUp/logic/register_state.dart';
 import '../../../../../core/widgets/custom_button.dart';
@@ -36,10 +37,7 @@ class RegisterBodyBlocButton extends StatelessWidget {
                   if(cubit.isCheck){
                     cubit.userRegister(phoneNumber: cubit.phoneController.text,name: cubit.nameController.text,email: cubit.emailController.text,password: cubit.passwordController.text);
                   }else{
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("يجب الموافقه ع الاحكام والشروط")
-                        )
-                    );
+                  showSnackBarMessage(context: context, message: "يجب الموافقه ع الاحكام والشروط");
                   }
                 }
               },
@@ -50,9 +48,7 @@ class RegisterBodyBlocButton extends StatelessWidget {
               Navigator.pushNamed(context, MainView.routeName);
             }
             if (state is RegisterFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.error)),
-              );
+              showSnackBarMessage(context: context, message: state.error);
               log(state.error.toString().toUpperCase());
             }
           },

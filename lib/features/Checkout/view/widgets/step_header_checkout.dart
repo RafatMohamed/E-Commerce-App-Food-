@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/core/helper/snacbar_meesage.dart';
+import 'package:food_app/features/Checkout/data/Model/order_model.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import 'list_step_checkout.dart';
 
-class StepHeaderCheckOut extends StatelessWidget {
+class StepHeaderCheckOut extends StatefulWidget {
   const StepHeaderCheckOut({
     super.key,
-    required int currentStep,
-  }) : _currentStep = currentStep;
-
-  final int _currentStep;
+    required this.currentStep, required this.pageController, required this.order,
+  });
+ final PageController pageController;
+  final int currentStep;
+  final OrderModel order;
 
   @override
+  State<StepHeaderCheckOut> createState() => _StepHeaderCheckOutState();
+}
+
+class _StepHeaderCheckOutState extends State<StepHeaderCheckOut> {
+  @override
   Widget build(BuildContext context) {
+    int currentStep=widget.currentStep;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Theme(
@@ -30,11 +39,21 @@ class StepHeaderCheckOut extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             elevation: 0,
             type: StepperType.horizontal,
-            currentStep: _currentStep,
-            controlsBuilder: (context, details) => const SizedBox(),
+            currentStep: currentStep,
+            onStepTapped: (value) {
+             setState(() {
+               currentStep=value;
+               if(widget.order.isCash != null){
+                 widget.pageController.animateToPage(currentStep, duration: const Duration(milliseconds: 300), curve: Curves.bounceInOut);
+               }else{
+                showSnackBarMessage(context: context, message: "Please select the The methode to shipping");
+               }
+             });
+
+            },
             steps: listStepCheckout.map((title) {
               final index = listStepCheckout.indexOf(title);
-              final isActive = _currentStep >= index;
+              final isActive = currentStep >= index;
               final color =
               isActive
                   ? Theme.of(context).colorScheme.primary
@@ -42,9 +61,9 @@ class StepHeaderCheckOut extends StatelessWidget {
               return Step(
                 title: Text(title, style: TextStyle(color: color)),
                 content: const SizedBox.shrink(),
-                isActive: _currentStep >= index,
+                isActive: currentStep >= index,
                 state:
-                _currentStep > index
+              currentStep > index
                     ? StepState.complete
                     : StepState.indexed,
               );

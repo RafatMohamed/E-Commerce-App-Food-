@@ -6,6 +6,19 @@ class CartModel {
   final List<CartItemModel> cartItem;
   CartModel({required this.cartItem});
 
+  factory CartModel.fromJson(Map<String, dynamic> json) {
+    return CartModel(
+      cartItem: (json['cartItem'] as List<dynamic>? ?? [])
+          .map((e) => CartItemModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'cartItem': cartItem.map((e) => e.toJson()).toList(),
+    };
+  }
   void addProduct(ProductModel product) {
     if (cartItem.any((element) => element.productModel.code == product.code)) {
       cartItem.firstWhere((element) => element.productModel.code == product.code).incrementCount();

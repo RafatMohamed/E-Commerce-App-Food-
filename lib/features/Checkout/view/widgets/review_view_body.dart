@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/core/utils/app_text_styles.dart';
+import 'package:food_app/features/Checkout/data/Model/order_model.dart';
 import 'list_step_checkout.dart';
 
 class ReviewViewBody extends StatelessWidget {
-  const ReviewViewBody({super.key});
+  const ReviewViewBody({super.key, required this.order});
+  final OrderModel order ;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,7 +36,7 @@ class ReviewViewBody extends StatelessWidget {
                 spacing: 8,
                 children: [
                   Text(
-                    '150 جنيه',
+                    '${order.cartModel.claculateTotalprice().toInt()} جنيه',
                     textDirection: TextDirection.rtl,
                     style: TextStyles.bold16.copyWith(
                       color: AppColor.grayscale950,
@@ -80,7 +82,7 @@ class ReviewViewBody extends StatelessWidget {
                 spacing: 8,
                 children: [
                   Text(
-                    '150 جنيه',
+                    '${order.cartModel.claculateTotalprice().toInt()+30} جنيه',
                     textDirection: TextDirection.rtl,
                     style: TextStyles.bold16.copyWith(
                       color: AppColor.grayscale950,
@@ -213,7 +215,7 @@ class ReviewViewBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "شارع النيل، مبنى رقم ١٢٣",
+                    "${order.addressOrderModel!.numberFloor ?? '' } - ${order.addressOrderModel!.city} - ${order.addressOrderModel!.address}",
                     textDirection: TextDirection.rtl,
                     style: TextStyles.regular16.copyWith(
                       color: AppColor.grayscale500,

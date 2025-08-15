@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/core/constant.dart';
+import 'package:food_app/core/helper/snacbar_meesage.dart';
 import 'package:food_app/features/cart/data/cart_item_model.dart';
 
 import '../../../../core/utils/app_colors.dart';
@@ -145,11 +146,7 @@ class CustomButtonsAddRemoveWithCount extends StatelessWidget {
               product: cartItem.productModel,
             );
           }: (){
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("لا يوجد المنتجات المتاحة"),
-              ),
-            );
+         showSnackBarMessage(context: context, message: "لا يوجد المنتجات المتاحة");
           },
           icon: Icons.add,
         ),
