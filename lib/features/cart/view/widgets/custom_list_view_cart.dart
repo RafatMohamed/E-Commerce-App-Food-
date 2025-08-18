@@ -95,7 +95,7 @@ class CustomListViewCart extends StatelessWidget {
             Hero(
               tag: tHeroImgCard,
               child: buildProductImage(
-                imagePath: cartItem.productModel.imagePath,
+                imagePath: cartItem.productModel.imagePath!,
                 size: size,
                 isScaleCover: false,
               ),

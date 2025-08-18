@@ -4,6 +4,9 @@ import 'package:food_app/core/service/Firebase_service/data_base_service.dart';
 import 'package:food_app/core/service/Firebase_service/firebase_auth.dart';
 import 'package:food_app/features/Auth/Login/data/login_repo.dart';
 import 'package:food_app/features/Auth/Login/logic/login_cubit.dart';
+import 'package:food_app/features/Checkout/data/repo/order_repo.dart';
+import 'package:food_app/features/Checkout/data/repo/order_repo_imp.dart';
+import 'package:food_app/features/Checkout/logic/order_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/Auth/SignUp/data/repo.dart';
@@ -46,5 +49,15 @@ void setup() {
     CategoryProductRepoImp(
       dataBaseService: getIt.get<DataBaseService>(),
     ),
+  );
+  getIt.registerSingleton<OrderRepo>(
+    OrderRepoImp(
+      dataBaseServiceFireSt: getIt.get<DataBaseService>(),
+    ),
+  );
+  getIt.registerSingleton<OrderCubit>(
+      OrderCubit(
+          orderRepo: getIt.get<OrderRepo>(),
+      )
   );
 }

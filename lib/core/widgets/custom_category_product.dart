@@ -150,7 +150,7 @@ class CustomCategoryProduct extends StatelessWidget {
           top: 50,
           left: 10,
           right: 10,
-          child: buildProductImage(imagePath: product.imagePath, size: size),
+          child: buildProductImage(imagePath: product.imagePath!, size: size),
         ),
       ],
     );

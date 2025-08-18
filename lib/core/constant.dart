@@ -13,4 +13,5 @@ const String pCity="city";
 const String pNumberFloor="numberFloor";
 const String pPhoneNumber="phoneNumber";
 const String pIsCash="isCash";
+const String kOrderProduct="orderProduct";
 

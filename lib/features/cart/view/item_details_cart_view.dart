@@ -69,7 +69,7 @@ class ItemDetailsCartView extends StatelessWidget {
                   child: Hero(
                     tag: tHeroImgCard,
                     child: buildProductImage(
-                      imagePath: productModel.imagePath,
+                      imagePath: productModel.imagePath!,
                       size: size,
                       isItemCart: true,
                     ),

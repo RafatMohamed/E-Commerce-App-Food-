@@ -20,7 +20,6 @@ class _AddressViewBodyState extends State<AddressViewBody> {
   void initState() {
     super.initState();
 
-    // Ensure we have an AddressOrderModel in the order
     widget.orderModel.addressOrderModel ??= AddressOrderModel(
       name: '',
       email: '',
@@ -65,7 +64,7 @@ class _AddressViewBodyState extends State<AddressViewBody> {
   }
   bool isSwitch = true;
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController addressController = TextEditingController();
+  final TextEditingController addressController = TextEditingController() ;
   final TextEditingController cityController = TextEditingController();
   final TextEditingController numberHouseController = TextEditingController();
   final TextEditingController nameController = TextEditingController();

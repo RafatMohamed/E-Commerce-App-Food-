@@ -56,4 +56,15 @@ import 'data_base_service.dart';
     );
   }
 
-}
+  @override
+  Future<void> setSubCollectionData({
+    required String collectionName,required String subCollectionName,required String path,required Map<String,dynamic> data})async{
+    await fireStore
+        .collection(collectionName)
+        .doc(path)
+        .collection(subCollectionName)
+        .doc()
+        .set(data);
+  }
+
+ }

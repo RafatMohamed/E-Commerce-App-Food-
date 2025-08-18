@@ -4,7 +4,9 @@ import 'package:food_app/features/splash&onBoarding/views/onboarding_view.dart';
 import 'package:food_app/features/splash&onBoarding/views/splash_view.dart';
 import '../../features/Auth/Login/View/login_view.dart';
 import '../../features/Auth/SignUp/View/sign_up_view.dart';
+import '../../features/Checkout/data/Model/order_model.dart';
 import '../../features/Checkout/view/check_out_view.dart';
+import '../../features/Checkout/view/order_success_view.dart';
 import '../../features/Home/View/best_sellers_view.dart';
 import '../../features/Home/View/home_view.dart';
 import '../../features/cart/data/cart_item_model.dart';
@@ -67,6 +69,13 @@ Route<dynamic> onGenerateRoute(RouteSettings setting){
        builder: (context) {
         return  ItemDetailsCartView(
           cartItem: setting.arguments as CartItemModel,
+        );
+      },);
+     case OrderConfirmationView.routeName:
+     return MaterialPageRoute(
+       builder: (context) {
+        return  OrderConfirmationView(
+          order: setting.arguments as OrderModel,
         );
       },);
     default:

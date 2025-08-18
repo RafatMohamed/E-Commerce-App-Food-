@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget buildProductImage({required String? imagePath,bool isScaleCover =true,bool isItemCart = false,required Size size}) {
+Widget buildProductImage({required String imagePath,bool isScaleCover =true,bool isItemCart = false,required Size size}) {
   if (imagePath == null ) {
     return const Icon(Icons.image_not_supported);
   }
@@ -15,7 +15,7 @@ Widget buildProductImage({required String? imagePath,bool isScaleCover =true,boo
           shape: BoxShape.circle,
         ),
         child: Image.network(
-          "https://tkckdapnovajnxsukzys.supabase.co/storage/v1/object/public/images/images/1000469047.jpg",
+          imagePath,
           fit: isScaleCover ? BoxFit.cover : BoxFit.scaleDown,
           errorBuilder: (context, error, stackTrace) =>
           const Icon(Icons.broken_image),

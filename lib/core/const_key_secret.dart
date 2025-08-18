@@ -1,0 +1,3 @@
+const String kSecretKey = "EEDvfoGIVhlZOuoDoOxwW2SBINqkCRBH-6H1ureKPlueCQJ2p5KwB4Hn-_H9k1heAzPgJJL9TNZ0cDUj";
+
+const String kClientId = "AUGo8Kyd_BBbXx6KBz8bk1xzNzUqe0BKz6VhIIRvT9FS5MyqyDtSBcaKw6Y643CYNhlKVoOgNce-20WY";

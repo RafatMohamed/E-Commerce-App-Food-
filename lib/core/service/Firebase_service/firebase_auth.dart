@@ -13,8 +13,8 @@ class FirebaseAuthService {
   Future<void> signOut() async {
     await _auth.signOut();
   }
-  Future<String> getUser()async{
-  return  _auth.currentUser!.uid;
+  String getUser(){
+  return _auth.currentUser!.uid;
   }
   bool isSignIn() {
     return _auth.currentUser != null;

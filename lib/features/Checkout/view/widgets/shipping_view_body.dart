@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:food_app/features/Checkout/data/Model/order_model.dart';
 import 'package:food_app/features/Checkout/view/widgets/shipping_items_selected.dart';
-
 import '../../../../core/constant.dart';
 import '../../../../core/service/StorageLocal/shared_prefs.dart';
 class ShippingViewBody extends StatefulWidget {
@@ -73,51 +72,3 @@ class _ShippingViewBodyState extends State<ShippingViewBody> with AutomaticKeepA
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive =>true;
 }
-
-// class ShippingViewBody extends StatefulWidget {
-//   const ShippingViewBody({super.key});
-//
-//   @override
-//   State<ShippingViewBody> createState() => _ShippingViewBodyState();
-// }
-//
-// class _ShippingViewBodyState extends State<ShippingViewBody> with AutomaticKeepAliveClientMixin{
-//
-//   bool isSelected = false;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     super.build(context);
-//     return Column(
-//       children: [
-//         ShippingItemsSelected(
-//           text: "الدفع عند الاستلام",
-//           subText: "التسليم من المكان",
-//           price: 40,
-//           isSelected: isSelected,
-//           onTap: () {
-//             setState(() {
-//               isSelected = !isSelected;
-//             });
-//           },
-//         ),
-//         const SizedBox(height: 10),
-//         ShippingItemsSelected(
-//           text: "اشتري الان وادفع لاحقا",
-//           subText: "يرجي تحديد طريقه الدفع",
-//           price: 0,
-//           isSelected: !isSelected,
-//           onTap: () {
-//             setState(() {
-//               isSelected = !isSelected;
-//             });
-//           },
-//         ),
-//       ],
-//     );
-//   }
-//
-//   @override
-//   // TODO: implement wantKeepAlive
-//   bool get wantKeepAlive => true;
-// }
