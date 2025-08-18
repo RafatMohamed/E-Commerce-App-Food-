@@ -15,6 +15,7 @@ import '../../features/cart/view/item_details_cart_view.dart';
 import '../../features/product/View/product_view.dart';
 import '../../features/product/View/filter_category_product_view.dart';
 import '../../features/MainView/main_view.dart';
+import '../../features/profile/views/profile_view.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings setting){
   switch(setting.name){
@@ -77,6 +78,11 @@ Route<dynamic> onGenerateRoute(RouteSettings setting){
         return  OrderConfirmationView(
           order: setting.arguments as OrderModel,
         );
+      },);
+     case ProfileView.routeName:
+     return MaterialPageRoute(
+       builder: (context) {
+        return const ProfileView();
       },);
     default:
       return MaterialPageRoute(builder: (context) {

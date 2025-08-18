@@ -35,14 +35,6 @@ class _BlocBuilderBestSellerState extends State<BlocBuilderBestSeller> {
         else if (state is ProductError) {
           return Text(state.errorMessage);
         }
-        if (state is ProductSuccess) {
-          final product = state.products;
-          return  GridViewProduct(
-            isHomeView: false,
-            products: product,
-            productsCount: product.length,
-          );
-        }
         else{
           return const Center(child: CircularProgressIndicator());
         }

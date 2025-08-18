@@ -4,6 +4,7 @@ import 'package:food_app/features/cart/view/cart_view.dart';
 import 'package:food_app/features/product/View/product_view.dart';
 import '../../core/widgets/default_bottom_nav_bar.dart';
 import '../Home/View/home_view.dart';
+import '../profile/views/profile_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -20,7 +21,7 @@ class _MainViewState extends State<MainView> {
     const HomeView(),
     const ProductView(), //ProductsView(),
     const CartView(), // ShoppingCartView(),
-    const Placeholder(), // ProfileView(),
+    const ProfileView(), // ProfileView(),
   ];
 
   @override
