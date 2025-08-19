@@ -13,5 +13,8 @@ const String pCity="city";
 const String pNumberFloor="numberFloor";
 const String pPhoneNumber="phoneNumber";
 const String pIsCash="isCash";
+const String pIsCard="isCard";
+const String pIsPayPal="isPayPal";
+const String pPaymentMethode="paymentMethode";
 const String kOrderProduct="orderProduct";
 

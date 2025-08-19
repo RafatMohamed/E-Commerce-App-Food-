@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/core/utils/app_text_styles.dart';
 import 'package:food_app/features/Checkout/data/Model/order_model.dart';
+import '../../../../core/constant.dart';
 import 'list_step_checkout.dart';
 
 class ReviewViewBody extends StatelessWidget {
@@ -149,19 +150,14 @@ class ReviewViewBody extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 8,
                 children: [
                   SvgPicture.asset(
-                    cards[0],
-                  ),
-                  Text(
-                    "**** **** **** 6522",
-                    textDirection: TextDirection.rtl,
-                    style: TextStyles.regular16.copyWith(
-                      color: AppColor.grayscale500,
-                    ),
+                    width: 25,
+                    height: 25,
+                    order.paymentMethode == pIsCash ? cards[0] : order.paymentMethode == pIsCard ? cards[1] : cards[2],
                   ),
                 ],
               ),

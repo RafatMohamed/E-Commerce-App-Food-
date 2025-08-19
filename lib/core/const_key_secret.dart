@@ -1,3 +1,2 @@
-const String kSecretKey = "EEDvfoGIVhlZOuoDoOxwW2SBINqkCRBH-6H1ureKPlueCQJ2p5KwB4Hn-_H9k1heAzPgJJL9TNZ0cDUj";
-
-const String kClientId = "AUGo8Kyd_BBbXx6KBz8bk1xzNzUqe0BKz6VhIIRvT9FS5MyqyDtSBcaKw6Y643CYNhlKVoOgNce-20WY";
+const String kSecretKey = "ECnuAVIPYgI9q7rkF8hRmikB6802FnPt4opr3MyrpkrMxLK82Vdyy_BON9T9dibRyTeNaKpjUxGib8z4";
+const String kClientId = "AcTe_UqPw9EnpaF7tYfCQiI8fKOmjHysQCH_8RpYS3nDobtmmCFzlSbJ3G5CiP3nuT0fHEFcH-d3qlzg";

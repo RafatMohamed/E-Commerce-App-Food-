@@ -8,12 +8,12 @@ import 'list_step_checkout.dart';
 class StepHeaderCheckOut extends StatefulWidget {
   const StepHeaderCheckOut({
     super.key,
-    required this.currentStep, required this.pageController, required this.order,
+    required this.currentStep, required this.pageController, required this.order, required this.handleStepPayment,
   });
  final PageController pageController;
   final int currentStep;
   final OrderModel order;
-
+  final Function(int index) handleStepPayment;
   @override
   State<StepHeaderCheckOut> createState() => _StepHeaderCheckOutState();
 }
@@ -43,13 +43,8 @@ class _StepHeaderCheckOutState extends State<StepHeaderCheckOut> {
             onStepTapped: (value) {
              setState(() {
                currentStep=value;
-               if(widget.order.isCash != null){
-                 widget.pageController.animateToPage(currentStep, duration: const Duration(milliseconds: 300), curve: Curves.bounceInOut);
-               }else{
-                showSnackBarMessage(context: context, message: "Please select the The methode to shipping");
-               }
+               widget.handleStepPayment(value);
              });
-
             },
             steps: listStepCheckout.map((title) {
               final index = listStepCheckout.indexOf(title);

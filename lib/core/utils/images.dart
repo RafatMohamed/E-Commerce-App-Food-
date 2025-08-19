@@ -52,4 +52,5 @@ class Assets {
   static const String stars= "assets/images/star.svg";
   static const String masterCard= "assets/images/Mastercard.svg";
   static const String paypal= "assets/images/Paypal.svg";
+  static const String cash= "assets/images/cashSvg.svg";
 }

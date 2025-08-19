@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget buildProductImage({required String imagePath,bool isScaleCover =true,bool isItemCart = false,required Size size}) {
+Widget buildProductImage({required String? imagePath,bool isScaleCover =true,bool isItemCart = false,required Size size}) {
   if (imagePath == null ) {
     return const Icon(Icons.image_not_supported);
   }

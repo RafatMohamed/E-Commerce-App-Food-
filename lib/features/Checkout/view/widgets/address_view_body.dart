@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:food_app/core/constant.dart';
 import 'package:food_app/core/utils/app_colors.dart';
@@ -92,9 +91,9 @@ class _AddressViewBodyState extends State<AddressViewBody> {
             keyboardType: TextInputType.name,
             hintText: "الاسم كامل",
             obscureText: false,
-            onSaved: (namee) {
-              nameController.text = namee!;
-              widget.orderModel.addressOrderModel!.name = namee;
+            onSaved: (name) {
+              nameController.text = name!;
+              widget.orderModel.addressOrderModel!.name = name;
             },
             controller: nameController,
           ),
@@ -184,7 +183,6 @@ class _AddressViewBodyState extends State<AddressViewBody> {
                     PrefsStorage().saveString(pCity,widget.orderModel.addressOrderModel!.city);
                     PrefsStorage().saveString(pNumberFloor,widget.orderModel.addressOrderModel!.numberFloor??"");
                     PrefsStorage().saveString(pPhoneNumber,widget.orderModel.addressOrderModel!.phoneNumber);
-                    debugPrint("✅ Address saved in model & locally");
                   }else{
                     PrefsStorage().saveString(pAddressName,"");
                     PrefsStorage().saveString(pAddressEmail,"");
@@ -192,22 +190,9 @@ class _AddressViewBodyState extends State<AddressViewBody> {
                     PrefsStorage().saveString(pCity,"");
                     PrefsStorage().saveString(pNumberFloor,"");
                     PrefsStorage().saveString(pPhoneNumber,"");
-                    debugPrint("❌ Switch OFF, address not saved");
                   }
                 },
               ),
-              const SizedBox(width: 10),
-              IconButton(onPressed: (){
-                log(widget.orderModel.isCash?.toString() ?? "isCash not set");
-                if (widget.orderModel.addressOrderModel != null) {
-                  log(widget.orderModel.addressOrderModel!.name);
-                  log(widget.orderModel.addressOrderModel!.numberFloor ?? "floor");
-                } else {
-                  log("AddressOrderModel is not set yet");
-                }
-
-                log(widget.orderModel.cartModel.cartItem.first.productModel.code);
-              }, icon: const Icon(Icons.ac_unit))
             ],
           ),
         ],
