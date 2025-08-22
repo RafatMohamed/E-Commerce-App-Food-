@@ -12,7 +12,9 @@ import 'package:food_app/features/Checkout/logic/order_cubit.dart';
 import 'package:food_app/features/Checkout/view/widgets/step_body_checkout.dart';
 import 'package:food_app/features/Checkout/view/widgets/step_header_checkout.dart';
 import '../../../../core/const_key_secret.dart';
+import '../../../../core/service/Firebase_service/firebase_auth.dart';
 import '../../../cart/logic/cart_cubit.dart';
+import '../../data/Model/strip_model/model/payment_inpur_model.dart';
 import '../order_success_view.dart';
 import 'list_step_checkout.dart';
 
@@ -34,12 +36,19 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
     super.initState();
     _pageController = PageController(initialPage: _currentStep);
   }
+
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
   }
-  void _handleOrderWithoutPayment(int currentStep) {
+
+  void _handleOrderWithoutPayment(int currentStep)async {
+    final PaymentInputModel paymentInputModel = PaymentInputModel(
+      customerId: "cus_SuRMp0HfelbSRG",
+      amount: calculateTotalAll(widget.order,isStripe: true),
+      currency: getCurrency()!,
+    );
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       if (currentStep < currentStepLength - 1) {
@@ -51,8 +60,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
           return;
         }
 
-        if (currentStep == 2 &&
-            widget.order.paymentMethode == null) {
+        if (currentStep == 2 && widget.order.paymentMethode == null) {
           showSnackBarMessage(
             context: context,
             message: "Please select a payment method",
@@ -68,10 +76,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
             curve: Curves.linear,
           );
           if (widget.order.paymentMethode == pIsPayPal) {
-            showSnackBarMessage(
-              context: context,
-              message: "using paypal",
-            );
+            showSnackBarMessage(context: context, message: "using paypal");
             return;
           }
           if (widget.order.paymentMethode == pIsCard) {
@@ -82,10 +87,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
             return;
           }
           if (widget.order.paymentMethode == pIsCash) {
-            showSnackBarMessage(
-              context: context,
-              message: "using cash",
-            );
+            showSnackBarMessage(context: context, message: "using cash");
             return;
           }
         }
@@ -98,7 +100,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
       } else {
         if (widget.order.paymentMethode == pIsPayPal) {
           if (!isPaid) {
-            _handleOrderWithPayment(
+            _handleOrderWithPaymentByPaypal(
               context: context,
               order: widget.order,
               onSuccess: () {
@@ -113,7 +115,37 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
               },
             );
             return;
-          } else {
+          }
+          else {
+            Navigator.pushReplacementNamed(
+              context,
+              OrderConfirmationView.routeName,
+              arguments: widget.order,
+            );
+            setState(() {
+              isPaid = false;
+            });
+            return;
+          }
+        }
+        if (widget.order.paymentMethode == pIsCard) {
+          if (!isPaid) {
+           await _handleOrderWithPaymentStripe(
+              context: context,
+              paymentInputModel: paymentInputModel,
+              order: widget.order,
+              onSuccess: () {
+                setState(() {
+                  isPaid=true;
+                });
+               ScaffoldMessenger.of(context).showSnackBar(
+                 SnackBar(content: Text("you paid Success By card"),duration: Duration(seconds: 3),)
+               );
+              },
+            );
+            return;
+          }
+          else {
             Navigator.pushReplacementNamed(
               context,
               OrderConfirmationView.routeName,
@@ -132,8 +164,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
         );
         context.read<CartCubit>().clearCart();
       }
-    }
-    else {
+    } else {
       notifier = AutovalidateMode.always;
       showSnackBarMessage(
         context: context,
@@ -141,6 +172,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
       );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -150,8 +182,8 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
         children: [
           StepHeaderCheckOut(
             handleStepPayment: (currentStep) {
-              _handleOrderWithoutPayment(currentStep-1);
-              },
+              _handleOrderWithoutPayment(currentStep - 1);
+            },
             currentStep: _currentStep,
             pageController: _pageController,
             order: widget.order,
@@ -207,7 +239,30 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
   }
 }
 
-void _handleOrderWithPayment({
+Future<void> _handleOrderWithPaymentStripe({
+  required BuildContext context,
+  required PaymentInputModel paymentInputModel,
+  required OrderModel order,
+  required VoidCallback onSuccess,
+}) async {
+  final cubit = context.read<OrderCubit>();
+
+  final result = await cubit.confirmPaymentSheetByStripe(
+    paymentInputModel: paymentInputModel,
+  );
+
+  if (result is OrderSuccess) {
+ await  context.read<OrderCubit>().addOrder(order: order);
+    onSuccess();
+    showSnackBarMessage(context: context, message: "You paid successfully by card");
+  } else if (result is OrderFailed) {
+    showSnackBarMessage(context: context, message: "Payment failed by card");
+    Navigator.pop(context);
+  }
+}
+
+
+void _handleOrderWithPaymentByPaypal({
   required BuildContext context,
   required OrderModel order,
   required VoidCallback onSuccess,

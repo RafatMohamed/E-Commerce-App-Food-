@@ -9,6 +9,7 @@ import 'package:food_app/features/Checkout/logic/order_cubit.dart';
 import 'package:food_app/features/Checkout/view/widgets/check_out_view_body.dart';
 import 'package:food_app/features/cart/logic/cart_cubit.dart';
 import '../../cart/data/cart_model.dart';
+import '../data/repo/Payment Stripe Repo/payment_stripe_repo.dart';
 
 class CheckOutView extends StatelessWidget {
   const CheckOutView({super.key, required this.cart});
@@ -23,7 +24,7 @@ class CheckOutView extends StatelessWidget {
         notificaionVisible: false,
       ),
       body: BlocProvider(
-        create: (context) => OrderCubit(orderRepo: getIt<OrderRepo>()),
+        create: (context) => OrderCubit(orderRepo: getIt<OrderRepo>(),paymentRepo:getIt<PaymentStripeRepo>()),
         child: CheckOutViewBody(
           order: OrderModel(
             userId: FirebaseAuthService().getUser().toString(),

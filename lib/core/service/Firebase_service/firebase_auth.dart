@@ -4,8 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 class FirebaseAuthService {
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Future deletUser()async{
     return await _auth.currentUser!.delete();
@@ -96,4 +98,25 @@ class FirebaseAuthService {
       }
     }
   }
+
+  Future<String?> createStripeCustomer({
+    required String uid,
+    required String email,
+    required String name,
+  }) async {
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('createStripeCustomer');
+      final response = await callable.call({
+        'uid': uid,
+        'email': email,
+        'name': name,
+      });
+
+      return response.data['customerId'];
+    } catch (e) {
+      print("Error creating Stripe customer: $e");
+      return null;
+    }
+  }
+
 }

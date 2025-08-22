@@ -17,4 +17,5 @@ const String pIsCard="isCard";
 const String pIsPayPal="isPayPal";
 const String pPaymentMethode="paymentMethode";
 const String kOrderProduct="orderProduct";
+const String kUSerStripe="UserStripeCustomer";
 

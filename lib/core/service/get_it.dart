@@ -2,8 +2,11 @@ import 'package:food_app/core/repo/Categry_repo/category_product_repo_imp.dart';
 import 'package:food_app/core/repo/Product_repo/product_repo_imp.dart';
 import 'package:food_app/core/service/Firebase_service/data_base_service.dart';
 import 'package:food_app/core/service/Firebase_service/firebase_auth.dart';
+import 'package:food_app/core/service/strip_service.dart';
 import 'package:food_app/features/Auth/Login/data/login_repo.dart';
 import 'package:food_app/features/Auth/Login/logic/login_cubit.dart';
+import 'package:food_app/features/Checkout/data/repo/Payment%20Stripe%20Repo/payment_stripe_repo.dart';
+import 'package:food_app/features/Checkout/data/repo/Payment%20Stripe%20Repo/payment_stripe_repo_imp.dart';
 import 'package:food_app/features/Checkout/data/repo/order_repo.dart';
 import 'package:food_app/features/Checkout/data/repo/order_repo_imp.dart';
 import 'package:food_app/features/Checkout/logic/order_cubit.dart';
@@ -21,6 +24,8 @@ void setup() {
   getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
 
   getIt.registerSingleton<DataBaseService>(FireStoreService());
+
+  getIt.registerSingleton<StripeService>(StripeService());
 
   getIt.registerSingleton<LoginRepo>(LoginRepo(
     fireStoreService: getIt.get<DataBaseService>(),
@@ -55,9 +60,15 @@ void setup() {
       dataBaseServiceFireSt: getIt.get<DataBaseService>(),
     ),
   );
+  getIt.registerSingleton<PaymentStripeRepo>(
+    PaymentStripeRepoImp(
+      stripeService: getIt.get<StripeService>(),
+    ),
+  );
   getIt.registerSingleton<OrderCubit>(
       OrderCubit(
           orderRepo: getIt.get<OrderRepo>(),
+          paymentRepo: getIt.get<PaymentStripeRepo>()
       )
   );
 }

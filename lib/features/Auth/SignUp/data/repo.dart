@@ -26,6 +26,14 @@ class RegisterRepo{
       'phoneNumber': phoneNumber,
       'uid': user.uid,
     };
+    final  stripeCustomerID = await firebaseAuthService.createStripeCustomer(uid: user.uid, email: email, name: name);
+    if (stripeCustomerID != null) {
+      await fireStore.setData(
+        path: user.uid,
+        data: {'customerId': stripeCustomerID},
+        collectionName: kUSerStripe,
+      );
+    }
       await fireStore.setData(path: user.uid, data: userData, collectionName: kCollectionUserModel);
       return right(UserModelInfo.fromFirebaseUser(user));
     } on FirebaseAuthException catch (e) {

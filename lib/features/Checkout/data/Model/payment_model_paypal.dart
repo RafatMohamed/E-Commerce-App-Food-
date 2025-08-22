@@ -161,11 +161,11 @@ double getShippingDiscount(OrderModel order) {
   return 0.0;
 }
 
-String calculateTotalAll(OrderModel order) {
+String calculateTotalAll(OrderModel order,{ bool isStripe = false}) {
   final subtotal = double.tryParse(getSubtotal(order)) ?? 0.0;
   final shipping = double.tryParse(getShipping(order)) ?? 0.0;
   final discount = getShippingDiscount(order);
 
   final total = subtotal + shipping - discount;
-  return total.toStringAsFixed(2);
+  return isStripe ? (total * 100).round().toString() : total.toStringAsFixed(2);
 }
