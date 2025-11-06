@@ -31,13 +31,35 @@ class CartModel {
     cartItem.removeWhere((element) => element.productModel.code == product.code);
   }
   num incrementCount({required ProductModel product}) {
-   return cartItem[cartItem.indexWhere((element) => element.productModel.code == product.code)].incrementCount();
+    final index = cartItem.indexWhere((element) => element.productModel.code == product.code);
+
+    if (index != -1) {
+      return cartItem[index].incrementCount();
+    } else {
+      cartItem.add(CartItemModel(productModel: product, count: 1));
+      return 1;
+    }
   }
+
   num decrementCount({required ProductModel product}) {
-   return cartItem[cartItem.indexWhere((element) => element.productModel.code == product.code)].decrementCount();
+    final index = cartItem.indexWhere((element) => element.productModel.code == product.code);
+
+    if (index != -1) {
+      final newCount = cartItem[index].decrementCount();
+      if (newCount <= 0) {
+        cartItem.removeAt(index);
+      }
+      return newCount;
+    }
+    return 0;
   }
+
   num getCount({required ProductModel product}) {
-   return cartItem.firstWhere((element) => element.productModel.code == product.code).count;
+    final item = cartItem.firstWhere(
+          (element) => element.productModel.code == product.code,
+      orElse: () => CartItemModel(productModel: product, count: 0),
+    );
+    return item.count;
   }
   void clearCart(){
     cartItem.clear();

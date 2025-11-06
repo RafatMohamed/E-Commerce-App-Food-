@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app/core/helper/snacbar_meesage.dart';
+import 'package:food_app/core/helper/snackBar_message.dart';
 import 'package:food_app/core/widgets/custom_app_bar.dart';
 import 'package:food_app/features/cart/view/widgets/cart_view_body.dart';
 

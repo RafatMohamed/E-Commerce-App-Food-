@@ -21,7 +21,7 @@ class _MainViewState extends State<MainView> {
     const HomeView(),
     const ProductView(), //ProductsView(),
     const CartView(), // ShoppingCartView(),
-    const ProfileView(), // ProfileView(),
+     const ProfileView(), // ProfileView(),
   ];
 
   @override

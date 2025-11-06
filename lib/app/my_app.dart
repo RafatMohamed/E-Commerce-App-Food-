@@ -5,6 +5,7 @@ import 'package:food_app/core/helper/on_generate_routes.dart';
 import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/features/splash&onBoarding/views/splash_view.dart';
 
+import '../core/service/get_it.dart';
 import '../features/cart/logic/cart_cubit.dart';
 
 class FruitsApp extends StatelessWidget {
@@ -13,7 +14,7 @@ class FruitsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CartCubit(),
+      create: (context) => getIt<CartCubit>(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

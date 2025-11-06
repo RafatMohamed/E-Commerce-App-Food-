@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/core/utils/app_colors.dart';
+import '../../../../core/helper/snackBar_message.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../logic/cart_cubit.dart';
 import 'custom_list_view_cart.dart';
@@ -32,6 +33,10 @@ class CartViewBody extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 context.read<CartCubit>().clearCart();
+                showSnackBarMessage(
+                  context: context,
+                  message: 'Cart cleared',
+                );
               },
               child: Row(
                 children: [

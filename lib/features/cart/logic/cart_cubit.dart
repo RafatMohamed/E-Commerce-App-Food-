@@ -7,6 +7,7 @@ part 'cart_state.dart';
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
   CartModel cartModel = CartModel(cartItem: []);
+
   void addProduct({required ProductModel product}) {
     cartModel.addProduct(product);
     emit(CartAddSuccess());

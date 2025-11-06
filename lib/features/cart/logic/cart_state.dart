@@ -8,6 +8,9 @@ final class CartInitial extends CartState {}
 final class CartAddSuccess extends CartState {
   CartAddSuccess();
 }
+final class CartAddFavSuccess extends CartState {
+  CartAddFavSuccess();
+}
 final class CartRemoveSuccess extends CartState {
   CartRemoveSuccess();
 }

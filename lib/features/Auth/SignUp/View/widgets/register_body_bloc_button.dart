@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app/core/helper/snacbar_meesage.dart';
+import 'package:food_app/core/helper/snackBar_message.dart';
 import 'package:food_app/features/Auth/SignUp/logic/register_cubit.dart';
 import 'package:food_app/features/Auth/SignUp/logic/register_state.dart';
 import '../../../../../core/widgets/custom_button.dart';

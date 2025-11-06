@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/core/constant.dart';
-import 'package:food_app/core/helper/snacbar_meesage.dart';
+import 'package:food_app/core/helper/snackBar_message.dart';
 import 'package:food_app/features/cart/data/cart_item_model.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/build_img_product.dart';
-import '../../../../core/widgets/custom_button_add.dart';
+import '../../../../core/widgets/default_button_add_or_remove.dart';
 import '../../logic/cart_cubit.dart';
 import '../item_details_cart_view.dart';
 
@@ -51,11 +51,15 @@ class CustomListViewCart extends StatelessWidget {
                             context.read<CartCubit>().removeProduct(
                               product: cartItem.productModel,
                             );
+                            showSnackBarMessage(
+                              context: context,
+                              message: 'Product removed from cart',
+                            );
                           },
                           icon: const Icon(Icons.restore_from_trash_outlined),
                         ),
                         Text(
-                          cartItem.productModel.code,
+                          cartItem.productModel.name,
                           style: TextStyles.bold13,
                         ),
                       ],
@@ -107,50 +111,3 @@ class CustomListViewCart extends StatelessWidget {
   }
 }
 
-class CustomButtonsAddRemoveWithCount extends StatelessWidget {
-  const CustomButtonsAddRemoveWithCount({
-    super.key,
-    required this.cartItem,
-  });
-
-  final CartItemModel cartItem;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        CustomButtonAddORRemove(
-          onTap: cartItem.count > 0
-              ? () {
-            context.read<CartCubit>().decrementCount(
-              product: cartItem.productModel,
-            );
-          }
-              : (){},
-          icon: Icons.remove,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Text(
-            '${cartItem.getTotalCount()}',
-            textAlign: TextAlign.center,
-            style: TextStyles.bold16.copyWith(
-              color: AppColor.green1950,
-            ),
-          ),
-        ),
-        CustomButtonAddORRemove(
-          onTap:cartItem.count < cartItem.productModel.quantity ? () {
-            context.read<CartCubit>().incCount(
-              product: cartItem.productModel,
-            );
-          }: (){
-         showSnackBarMessage(context: context, message: "لا يوجد المنتجات المتاحة");
-          },
-          icon: Icons.add,
-        ),
-      ],
-    );
-  }
-}

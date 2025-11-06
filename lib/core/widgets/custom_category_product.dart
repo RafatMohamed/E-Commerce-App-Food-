@@ -5,9 +5,11 @@ import 'package:food_app/core/utils/app_text_styles.dart';
 import 'package:food_app/features/cart/data/cart_item_model.dart';
 import 'package:food_app/features/cart/view/item_details_cart_view.dart';
 import '../../features/cart/logic/cart_cubit.dart';
+import '../helper/snackBar_message.dart';
 import '../models/product_model.dart';
 import '../utils/images.dart';
 import 'build_img_product.dart';
+import 'custom_button_add.dart';
 
 class CustomCategoryProduct extends StatelessWidget {
   const CustomCategoryProduct({
@@ -20,15 +22,21 @@ class CustomCategoryProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-    final cartModel = context.read<CartCubit>().cartModel.cartItem.firstWhere(
-          (element) => element.productModel.code == product.code,
-      orElse: () => CartItemModel(productModel: product, count: 1), // fallback if not found
+    final cubit= context.read<CartCubit>();
+    final cartModel = context.watch<CartCubit>().cartModel.cartItem.firstWhere(
+      (element) => element.productModel.code == product.code,
+      orElse: () => CartItemModel(productModel: product, count: 1),
     );
     return Stack(
       children: [
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, ItemDetailsCartView.routeName, arguments: cartModel);},
+            Navigator.pushNamed(
+              context,
+              ItemDetailsCartView.routeName,
+              arguments: cartModel,
+            );
+          },
           child: Container(
             padding: const EdgeInsetsDirectional.only(
               top: 8,
@@ -82,19 +90,33 @@ class CustomCategoryProduct extends StatelessWidget {
                       width: 36,
                       height: 36,
                       decoration: const ShapeDecoration(
-                        color: Color(0xFF1B5E37) /* Green1-500 */,
+                        color: Color(0xFF1B5E37),
                         shape: OvalBorder(),
                       ),
+
                       child: Center(
-                        child: IconButton(
-                          onPressed: () {
-                            context.read<CartCubit>().addProduct(
-                              product: product,
+                        child: BlocBuilder<CartCubit, CartState>(
+                          builder: (context, state) {
+                            return CustomButtonAddORRemove(
+                              onTap: cartModel.count < cartModel.productModel.quantity
+                                      ? () {
+                                        cubit.incCount(
+                                          product: cartModel.productModel,
+                                        );
+                                        showSnackBarMessage(
+                                          context: context,
+                                          message: "Product added to cart",
+                                        );
+                                      }
+                                      : () {
+                                        showSnackBarMessage(
+                                          context: context,
+                                          message: "لا يوجد المنتجات المتاحة",
+                                        );
+                                      },
+                              icon: Icons.add,
                             );
                           },
-                          padding: EdgeInsets.zero,
-                          icon: const Icon(Icons.add, color: Colors.white),
-                          alignment: AlignmentDirectional.center,
                         ),
                       ),
                     ),

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:food_app/core/constant.dart';
 import 'package:food_app/core/utils/app_colors.dart';

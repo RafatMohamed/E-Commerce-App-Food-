@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/core/helper/snacbar_meesage.dart';
+import 'package:food_app/core/helper/snackBar_message.dart';
 import 'package:food_app/features/Checkout/data/Model/order_model.dart';
 
 import '../../../../core/utils/app_colors.dart';

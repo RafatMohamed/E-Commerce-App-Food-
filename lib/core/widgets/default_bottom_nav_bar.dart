@@ -65,8 +65,8 @@ class DefaultBottomNavigationBar extends StatelessWidget {
                 child:
                 isSelected
                     ? AnimatedContainer(
-                  curve: Curves.bounceInOut,
-                  duration: const Duration(milliseconds: 200),
+                  curve: Curves.linear,
+                  duration: const Duration(milliseconds: 50),
                   padding: const EdgeInsetsDirectional.only(start: 7),
                   alignment: AlignmentDirectional.centerEnd,
                   decoration: ShapeDecoration(

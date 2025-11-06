@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/features/cart/data/cart_model.dart';
+import 'package:food_app/features/profile/views/favourite_view.dart';
 import 'package:food_app/features/splash&onBoarding/views/onboarding_view.dart';
 import 'package:food_app/features/splash&onBoarding/views/splash_view.dart';
 import '../../features/Auth/Login/View/login_view.dart';
@@ -17,11 +18,15 @@ import '../../features/product/View/filter_category_product_view.dart';
 import '../../features/MainView/main_view.dart';
 import '../../features/profile/views/profile_view.dart';
 
-Route<dynamic> onGenerateRoute(RouteSettings setting){
-  switch(setting.name){
+Route<dynamic> onGenerateRoute(RouteSettings route){
+  switch(route.name){
     case SplashView.routeName:
      return MaterialPageRoute(builder: (context) {
         return const SplashView();
+      },);
+     case FavouriteView.routeName:
+     return MaterialPageRoute(builder: (context) {
+        return const FavouriteView();
       },);
      case OnBoardingView.routeName:
      return MaterialPageRoute(builder: (context) {
@@ -54,7 +59,7 @@ Route<dynamic> onGenerateRoute(RouteSettings setting){
      case CheckOutView.routeName:
      return MaterialPageRoute(builder: (context) {
         return  CheckOutView(
-          cart: setting.arguments as CartModel,
+          cart: route.arguments as CartModel,
         );
       },);
      case FilterCategoryProductView.routeName:
@@ -69,14 +74,14 @@ Route<dynamic> onGenerateRoute(RouteSettings setting){
      return MaterialPageRoute(
        builder: (context) {
         return  ItemDetailsCartView(
-          cartItem: setting.arguments as CartItemModel,
+          cartItem: route.arguments as CartItemModel,
         );
       },);
      case OrderConfirmationView.routeName:
      return MaterialPageRoute(
        builder: (context) {
         return  OrderConfirmationView(
-          order: setting.arguments as OrderModel,
+          order: route.arguments as OrderModel,
         );
       },);
      case ProfileView.routeName:

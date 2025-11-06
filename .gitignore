@@ -11,7 +11,6 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
-
 # IntelliJ related
 *.iml
 *.ipr
@@ -32,13 +31,12 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-
+lib/app/const_keys.dart
 # Symbolication related
 app.*.symbols
 
 # Obfuscation related
 app.*.map.json
-lib/core/const_key_secret.dart
 # Android Studio will place build artifacts here
 /android/app/debug
 /android/app/profile

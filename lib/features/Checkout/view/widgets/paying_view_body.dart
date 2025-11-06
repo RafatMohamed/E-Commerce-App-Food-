@@ -1,14 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/core/utils/app_text_styles.dart';
 import 'package:food_app/features/Checkout/data/Model/order_model.dart';
-import 'package:food_app/features/Checkout/logic/order_cubit.dart';
 import '../../../../core/constant.dart';
 import '../../../../core/service/StorageLocal/shared_prefs.dart';
-import '../order_success_view.dart';
 import 'list_step_checkout.dart';
 
 class PaymentViewBody extends StatefulWidget {
