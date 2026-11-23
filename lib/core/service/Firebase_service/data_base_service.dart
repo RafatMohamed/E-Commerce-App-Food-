@@ -6,4 +6,7 @@ abstract class DataBaseService{
   Future<void> setSubCollectionData({required String collectionName,required String subCollectionName,required String path,required Map<String,dynamic> data});
   Future<dynamic> getData({required String collectionName,String? path,Map<String,dynamic>? query});
   Future<UserModel> getUserDataFromFireStore(String uid);
+  Future<List<Map<String, dynamic>>> getSubCollectionData({required String collectionName,required String docId,required String subCollectionName});
+  Future<void> setSubCollectionDocData({required String collectionName,required String docId,required String subCollectionName,required String subDocId,required Map<String,dynamic> data});
+  Future<void> deleteSubCollectionDoc({required String collectionName,required String docId,required String subCollectionName,required String subDocId});
 }
