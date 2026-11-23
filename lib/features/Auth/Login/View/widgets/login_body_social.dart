@@ -42,28 +42,7 @@ class LoginBodySocial extends StatelessWidget {
               text: 'تسجيل بواسطة جوجل',
               logoIcon: Assets.imagesGoogleIcon,
               onPressed: () {
-              // final userLoginWithGoogle =  cubit.userLoginWithGoogle(context: context);
-              // if(userLoginWithGoogle != null){
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) {
-              //         return const PhoneNumberFormPage();
-              //       },
-              //     ),
-              //   );
-              // }else{
-              //   ScaffoldMessenger.of(context).showSnackBar(
-              //     const SnackBar(content: Text("فشل تسجيل الدخول بحساب جوجل")),
-              //   );
-              // }
-              //   if (cubit.phoneController.text == '' ||
-              //       cubit.phoneController.text.isEmpty ||
-              //       cubit.phoneController.text == null) {
-              //     ScaffoldMessenger.of(context).showSnackBar(
-              //       const SnackBar(content: Text("يرجى ادخال رقم الموبايل")),
-              //     );
-              //   }
+                cubit.userLoginWithGoogle(context: context);
               },
             );
           },
