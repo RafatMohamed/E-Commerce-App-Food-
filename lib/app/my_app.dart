@@ -6,6 +6,7 @@ import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/features/splash&onBoarding/views/splash_view.dart';
 
 import '../core/service/get_it.dart';
+import '../features/Home/logic/FavCubit/fav_cubit.dart';
 import '../features/cart/logic/cart_cubit.dart';
 
 class FruitsApp extends StatelessWidget {
@@ -13,8 +14,15 @@ class FruitsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<CartCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<CartCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<FavCubit>(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
