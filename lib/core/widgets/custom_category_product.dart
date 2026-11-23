@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/core/utils/app_text_styles.dart';
+import 'package:food_app/features/Home/logic/FavCubit/fav_cubit.dart';
+import 'package:food_app/features/Home/logic/FavCubit/fav_state.dart';
 import 'package:food_app/features/cart/data/cart_item_model.dart';
 import 'package:food_app/features/cart/view/item_details_cart_view.dart';
 import '../../features/cart/logic/cart_cubit.dart';
@@ -72,12 +74,33 @@ class CustomCategoryProduct extends StatelessWidget {
                       shape: OvalBorder(),
                     ),
                     child: Center(
-                      child: IconButton(
-                        onPressed: onTapFavorite,
-                        padding: EdgeInsets.zero,
-                        icon: const Icon(Icons.favorite_border),
-                        color: Colors.black,
-                        alignment: AlignmentDirectional.center,
+                      child: BlocBuilder<FavCubit, FavState>(
+                        builder: (context, state) {
+                          final favCubit = context.read<FavCubit>();
+                          final isFav = favCubit.isFav(product.code);
+                          return IconButton(
+                            onPressed: onTapFavorite ??
+                                () async {
+                                  final error =
+                                      await favCubit.toggleFav(product);
+                                  if (context.mounted) {
+                                    showSnackBarMessage(
+                                      context: context,
+                                      message: error ??
+                                          (favCubit.isFav(product.code)
+                                              ? "تمت الإضافة إلى المفضلة"
+                                              : "تمت الإزالة من المفضلة"),
+                                    );
+                                  }
+                                },
+                            padding: EdgeInsets.zero,
+                            icon: Icon(
+                              isFav ? Icons.favorite : Icons.favorite_border,
+                            ),
+                            color: isFav ? Colors.red : Colors.black,
+                            alignment: AlignmentDirectional.center,
+                          );
+                        },
                       ),
                     ),
                   ),
