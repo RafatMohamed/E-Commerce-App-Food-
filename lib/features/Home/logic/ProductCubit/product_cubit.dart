@@ -25,4 +25,12 @@ class ProductCubit extends Cubit<ProductState> {
       (product) => emit(ProductSuccess(products: product)),
     );
   }
+  Future<void> fetchFavProducts() async {
+    emit(ProductLoading());
+    var result = await productRepo.getProducts();
+    result.fold(
+      (error) => emit(ProductFavError(errorMessage: error)),
+      (product) => emit(ProductFavSuccess(products: product)),
+    );
+  }
 }
