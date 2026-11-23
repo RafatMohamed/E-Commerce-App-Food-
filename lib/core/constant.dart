@@ -19,3 +19,4 @@ const String pPaymentMethode="paymentMethode";
 const String kOrderProduct="orderProduct";
 const String kUSerStripe="UserStripeCustomer";
 
+const String kSubCollectionFavourites ="favourites";
