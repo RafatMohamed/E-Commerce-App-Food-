@@ -67,4 +67,49 @@ import 'data_base_service.dart';
         .set(data);
   }
 
+  @override
+  Future<List<Map<String, dynamic>>> getSubCollectionData({
+    required String collectionName,
+    required String docId,
+    required String subCollectionName,
+  }) async {
+    final result = await fireStore
+        .collection(collectionName)
+        .doc(docId)
+        .collection(subCollectionName)
+        .get();
+    return result.docs.map((e) => e.data()).toList();
+  }
+
+  @override
+  Future<void> setSubCollectionDocData({
+    required String collectionName,
+    required String docId,
+    required String subCollectionName,
+    required String subDocId,
+    required Map<String, dynamic> data,
+  }) async {
+    await fireStore
+        .collection(collectionName)
+        .doc(docId)
+        .collection(subCollectionName)
+        .doc(subDocId)
+        .set(data);
+  }
+
+  @override
+  Future<void> deleteSubCollectionDoc({
+    required String collectionName,
+    required String docId,
+    required String subCollectionName,
+    required String subDocId,
+  }) async {
+    await fireStore
+        .collection(collectionName)
+        .doc(docId)
+        .collection(subCollectionName)
+        .doc(subDocId)
+        .delete();
+  }
+
  }
