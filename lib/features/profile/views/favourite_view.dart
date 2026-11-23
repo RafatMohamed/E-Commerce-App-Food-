@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app/core/service/get_it.dart';
 
 import '../../../core/constant.dart';
-import '../../../core/repo/Product_repo/product_repo.dart';
 import '../../../core/widgets/custom_app_bar.dart';
 import '../../Home/View/widgets/grid_view_product_builder.dart';
-import '../../Home/logic/ProductCubit/product_cubit.dart';
-import '../../Home/logic/ProductCubit/product_state.dart';
+import '../../Home/logic/FavCubit/fav_cubit.dart';
+import '../../Home/logic/FavCubit/fav_state.dart';
 
 class FavouriteView extends StatelessWidget {
   const FavouriteView({super.key});
@@ -30,61 +28,50 @@ class FavouriteView extends StatelessWidget {
   }
 }
 
-class FavouriteViewBody extends StatelessWidget {
+class FavouriteViewBody extends StatefulWidget {
   const FavouriteViewBody({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return  SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      scrollDirection: Axis.vertical,
-      child: Padding(
-        padding: const EdgeInsets.all(kDefaultPadding),
-        child: BlocProvider(
-          create: (context) => ProductCubit(productRepo:getIt<ProductRepo>()),
-          child: const BlocBuilderFavouriteProduct(),
-        ),
-      ),
-    );
-  }
+  State<FavouriteViewBody> createState() => _FavouriteViewBodyState();
 }
 
-
-class BlocBuilderFavouriteProduct extends StatefulWidget {
-  const BlocBuilderFavouriteProduct({super.key});
-
-  @override
-  State<BlocBuilderFavouriteProduct> createState() =>
-      _BlocBuilderFavouriteProductState();
-}
-
-class _BlocBuilderFavouriteProductState
-    extends State<BlocBuilderFavouriteProduct> {
+class _FavouriteViewBodyState extends State<FavouriteViewBody> {
   @override
   void initState() {
     super.initState();
-    context.read<ProductCubit>().fetchFavProducts();
+    context.read<FavCubit>().fetchFavs();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductCubit, ProductState>(
-      builder: (context, state) {
-        if (state is ProductFavSuccess) {
-          final product = state.products;
-          return GridViewProduct(
-            isHomeView: true,
-            products: product,
-            productsCount: product.length,
+    return Padding(
+      padding: const EdgeInsets.all(kDefaultPadding),
+      child: BlocBuilder<FavCubit, FavState>(
+        builder: (context, state) {
+          final favCubit = context.read<FavCubit>();
+          if (state is FavError) {
+            return Center(child: Text(state.errorMessage));
+          }
+          if (state is FavLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          final products = favCubit.favProducts;
+          if (products.isEmpty) {
+            return const Center(
+              child: Text("لا توجد منتجات مفضلة بعد"),
+            );
+          }
+          return SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            child: GridViewProduct(
+              isHomeView: true,
+              products: products,
+              productsCount: products.length,
+            ),
           );
-        }
-        else if (state is ProductFavError) {
-          return Text(state.errorMessage);
-        }
-        else {
-          return const Center(child: CircularProgressIndicator());
-        }
-      },
+        },
+      ),
     );
   }
 }
