@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app/core/service/Firebase_service/firebase_auth.dart';
+import 'package:food_app/core/service/get_it.dart';
+import 'package:food_app/features/Home/logic/FavCubit/fav_cubit.dart';
 import 'package:food_app/features/MainView/widget/bloc_provider_body_main.dart';
 import 'package:food_app/features/cart/view/cart_view.dart';
 import 'package:food_app/features/product/View/product_view.dart';
@@ -25,6 +29,14 @@ class _MainViewState extends State<MainView> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    if (getIt<FirebaseAuthService>().isSignIn()) {
+      context.read<FavCubit>().fetchFavs();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -49,4 +61,3 @@ class _MainViewState extends State<MainView> {
     );
   }
 }
-
