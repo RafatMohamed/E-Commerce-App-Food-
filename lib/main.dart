@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:food_app/core/helper/custom_bloc_observe.dart';
-import 'App/my_app.dart';
+import 'app/my_app.dart';
 import 'app/const_keys.dart';
 import 'core/service/StorageLocal/shared_prefs.dart';
 import 'core/service/get_it.dart';
