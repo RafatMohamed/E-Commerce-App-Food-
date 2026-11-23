@@ -5,12 +5,9 @@ import 'package:food_app/core/service/get_it.dart';
 import '../../../core/constant.dart';
 import '../../../core/repo/Product_repo/product_repo.dart';
 import '../../../core/widgets/custom_app_bar.dart';
-import '../../../core/widgets/custom_bloc_provider_best_seller.dart';
 import '../../Home/View/widgets/grid_view_product_builder.dart';
-import '../../Home/View/widgets/product_builder_best_seller.dart';
 import '../../Home/logic/ProductCubit/product_cubit.dart';
 import '../../Home/logic/ProductCubit/product_state.dart';
-import '../../cart/logic/cart_cubit.dart';
 
 class FavouriteView extends StatelessWidget {
   const FavouriteView({super.key});
@@ -66,6 +63,7 @@ class _BlocBuilderFavouriteProductState
   @override
   void initState() {
     super.initState();
+    context.read<ProductCubit>().fetchFavProducts();
   }
 
   @override
